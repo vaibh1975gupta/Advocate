@@ -67,10 +67,6 @@ export default function ContactPage() {
                     <div className="text-charcoal-600">
                       {siteConfig.contact.officeAddress.line2}
                     </div>
-                    <div className="text-charcoal-600">
-                      {siteConfig.contact.officeAddress.city},{" "}
-                      {siteConfig.contact.officeAddress.state} - {siteConfig.contact.officeAddress.pincode}
-                    </div>
                     <a
                       href={siteConfig.contact.googleMapsDirectionsUrl}
                       target="_blank"
@@ -89,8 +85,7 @@ export default function ContactPage() {
                   </span>
                   <div className="text-charcoal-600 pl-8">
                     {siteConfig.contact.chambersAddress.line1},{" "}
-                    {siteConfig.contact.chambersAddress.line2},{" "}
-                    {siteConfig.contact.chambersAddress.city}
+                    {siteConfig.contact.chambersAddress.line2}
                   </div>
                 </div>
               </div>

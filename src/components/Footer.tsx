@@ -36,9 +36,8 @@ export function Footer() {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-gold-500 shrink-0 mt-0.5" />
                 <span>
-                  {siteConfig.contact.officeAddress.line1},{" "}
-                  {siteConfig.contact.officeAddress.city},{" "}
-                  {siteConfig.contact.officeAddress.state} - {siteConfig.contact.officeAddress.pincode}
+                  {siteConfig.contact.officeAddress.line1}
+                  {siteConfig.contact.officeAddress.line2 ? `, ${siteConfig.contact.officeAddress.line2}` : ""}
                 </span>
               </div>
               <div className="flex items-center gap-2.5">

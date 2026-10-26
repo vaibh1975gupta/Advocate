@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Scale,
   ShieldCheck,
@@ -33,7 +34,7 @@ export default function HomePage() {
             {/* Experience Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900 border border-gold-500/40 text-gold-400 text-xs font-semibold uppercase tracking-wider mb-6">
               <Award className="w-4 h-4 text-gold-400" />
-              <span>Over 20 Years of Dedicated Legal Practice</span>
+              <span>Over 25 Years of Dedicated Legal Practice</span>
             </div>
 
             {/* Headline */}
@@ -44,8 +45,8 @@ export default function HomePage() {
             {/* Sub-headline */}
             <p className="text-base sm:text-lg text-charcoal-200 font-sans leading-relaxed mb-8 max-w-2xl">
               Principled courtroom advocacy, strategic legal counsel, and rigorous drafting
-              representing clients before High Courts, District Courts, and appellate tribunals
-              across India.
+              representing clients before the District & Sessions Court, Special Courts, and
+              Judicial Magistrate Courts.
             </p>
 
             {/* Hero CTAs */}
@@ -74,11 +75,11 @@ export default function HomePage() {
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-gold-400 shrink-0" />
-                <span>20+ Years Experience</span>
+                <span>25+ Years Experience</span>
               </div>
               <div className="flex items-center gap-2">
                 <Scale className="w-4 h-4 text-gold-400 shrink-0" />
-                <span>High Court & District</span>
+                <span>District & Sessions Court</span>
               </div>
               <div className="flex items-center gap-2">
                 <Languages className="w-4 h-4 text-gold-400 shrink-0" />
@@ -99,13 +100,14 @@ export default function HomePage() {
                 Professional Creed & Practice Ethos
               </div>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-900 leading-snug">
-                More than Two Decades of Legal Advocacy Built on Integrity and Diligence
+                More than 25 Years of Legal Advocacy Built on Integrity and Diligence
               </h2>
               <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed font-sans">
                 The practice is founded on an unyielding dedication to constitutional governance,
-                meticulous legal research, and principled advocacy. Over two decades of regular
-                courtroom appearances have cultivated a deep, practical understanding of procedural
-                nuances, evidentiary weight, and effective dispute resolution.
+                meticulous legal research, and principled advocacy. Over 25 years of regular
+                courtroom appearances in the District & Sessions Court have cultivated a deep,
+                practical understanding of procedural nuances, evidentiary weight, and effective
+                dispute resolution.
               </p>
               <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed font-sans">
                 Clients receive candid, realistic legal appraisals without unwarranted litigation or
@@ -131,7 +133,7 @@ export default function HomePage() {
 
             <div className="lg:col-span-4 bg-navy-900 text-ivory-50 p-6 sm:p-8 rounded-xl border border-gold-500/30 text-center space-y-3">
               <span className="text-4xl sm:text-5xl font-serif font-bold text-gold-400 block">
-                20+
+                25+
               </span>
               <span className="text-xs uppercase tracking-widest text-ivory-200 block font-semibold">
                 Years of Legal Practice
@@ -218,9 +220,16 @@ export default function HomePage() {
               <div className="relative w-full max-w-sm">
                 <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-gold-500/30 to-navy-700 blur-sm" />
                 <div className="relative bg-navy-950 border border-gold-500/40 rounded-xl p-6 sm:p-8 text-center space-y-5 shadow-xl">
-                  {/* Portrait Placeholder Avatar */}
-                  <div className="w-32 h-32 mx-auto rounded-full bg-navy-900 border-2 border-gold-500/50 flex items-center justify-center text-gold-400 overflow-hidden shadow-inner">
-                    <Scale className="w-16 h-16 text-gold-400/80" />
+                  {/* Verified Portrait Image */}
+                  <div className="w-40 h-40 mx-auto rounded-full bg-navy-900 border-2 border-gold-500/70 overflow-hidden shadow-2xl relative">
+                    <Image
+                      src={siteConfig.advocate.portraitImage}
+                      alt={siteConfig.advocate.portraitAlt}
+                      fill
+                      sizes="(max-width: 768px) 160px, 160px"
+                      className="object-cover object-top"
+                      priority
+                    />
                   </div>
 
                   <div>
@@ -231,15 +240,21 @@ export default function HomePage() {
                       {siteConfig.advocate.formalTitle}
                     </p>
                     <p className="text-xs text-charcoal-200 mt-2 font-mono">
-                      20+ Years Verified Legal Practice
+                      25+ Years Verified Legal Practice
                     </p>
                   </div>
 
                   <div className="pt-3 border-t border-navy-800 text-left text-xs space-y-2 text-charcoal-200">
                     <div className="flex items-center justify-between">
-                      <span className="text-charcoal-400">Jurisdictions:</span>
+                      <span className="text-charcoal-400">Primary Court:</span>
                       <span className="text-ivory-100 font-medium text-right">
-                        High Court & District Courts
+                        District & Sessions Court
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-charcoal-400">Office Location:</span>
+                      <span className="text-ivory-100 font-medium text-right">
+                        Near SSP Office
                       </span>
                     </div>
                     <div className="flex items-center justify-between">

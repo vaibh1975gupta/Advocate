@@ -31,7 +31,7 @@ export const articles: Article[] = [
     languageLabel: "English",
     publishedDate: "2025-01-15",
     readTimeMinutes: 7,
-    author: "Chambers of Advocate [Full Name]",
+    author: "Chambers of Advocate Anil Kumar Gupta",
     tags: ["Cheque Bounce", "Section 138 NI Act", "Statutory Notice", "Criminal Complaint", "Banking Law"],
     statutoryReferences: [
       "Section 138 to 148, Negotiable Instruments Act, 1881",
@@ -95,7 +95,7 @@ export const articles: Article[] = [
     languageLabel: "हिन्दी",
     publishedDate: "2025-01-20",
     readTimeMinutes: 6,
-    author: "एडवोकेट [Full Name] का चैंबर",
+    author: "एडवोकेट अनिल कुमार गुप्ता का चैंबर",
     tags: ["चेक बाउंस", "धारा 138", "लीगल नोटिस", "बैंक रिटर्न मेमो", "कानूनी सलाह"],
     statutoryReferences: [
       "परक्राम्य लिखत अधिनियम, 1881 (धारा 138 से 148)",
@@ -146,7 +146,7 @@ export const articles: Article[] = [
     languageLabel: "English",
     publishedDate: "2025-02-05",
     readTimeMinutes: 8,
-    author: "Chambers of Advocate [Full Name]",
+    author: "Chambers of Advocate Anil Kumar Gupta",
     tags: ["Bail Jurisprudence", "Anticipatory Bail", "Criminal Defense", "CrPC / BNSS", "Personal Liberty"],
     statutoryReferences: [
       "Section 436, 437, 438, 439 Code of Criminal Procedure, 1973",
@@ -199,7 +199,7 @@ export const articles: Article[] = [
     languageLabel: "हिन्दी",
     publishedDate: "2025-02-12",
     readTimeMinutes: 7,
-    author: "एडवोकेट [Full Name] का चैंबर",
+    author: "एडवोकेट अनिल कुमार गुप्ता का चैंबर",
     tags: ["जमानत", "अग्रिम जमानत", "आपराधिक प्रक्रिया", "अनुच्छेद 21", "नागरिक अधिकार"],
     statutoryReferences: [
       "दंड प्रक्रिया संहिता (CrPC) की धारा 436, 437, 438, 439",
@@ -243,7 +243,7 @@ export const articles: Article[] = [
     languageLabel: "English",
     publishedDate: "2025-02-28",
     readTimeMinutes: 8,
-    author: "Chambers of Advocate [Full Name]",
+    author: "Chambers of Advocate Anil Kumar Gupta",
     tags: ["Property Due Diligence", "Title Search", "Encumbrance Certificate", "Land Purchase", "RERA"],
     statutoryReferences: [
       "Transfer of Property Act, 1882",
@@ -286,7 +286,7 @@ export const articles: Article[] = [
     languageLabel: "हिन्दी",
     publishedDate: "2025-03-05",
     readTimeMinutes: 6,
-    author: "एडवोकेट [Full Name] का चैंबर",
+    author: "एडवोकेट अनिल कुमार गुप्ता का चैंबर",
     tags: ["जमीन रजिस्ट्री", "मालिकाना हक", "खतौनी", "दाखिल-खारिज", "भारमुक्त प्रमाण पत्र"],
     statutoryReferences: [
       "संपत्ति अंतरण अधिनियम, 1882",
@@ -323,7 +323,7 @@ export const articles: Article[] = [
     languageLabel: "English",
     publishedDate: "2025-03-12",
     readTimeMinutes: 7,
-    author: "Chambers of Advocate [Full Name]",
+    author: "Chambers of Advocate Anil Kumar Gupta",
     tags: ["Mutual Consent Divorce", "Section 13B HMA", "Family Court", "Cooling-Off Waiver", "Matrimonial Law"],
     statutoryReferences: [
       "Section 13B, Hindu Marriage Act, 1955",
@@ -367,7 +367,7 @@ export const articles: Article[] = [
     languageLabel: "English",
     publishedDate: "2025-03-18",
     readTimeMinutes: 6,
-    author: "Chambers of Advocate [Full Name]",
+    author: "Chambers of Advocate Anil Kumar Gupta",
     tags: ["Will Drafting", "Succession Planning", "Indian Succession Act", "Probate", "Testamentary Law"],
     statutoryReferences: [
       "Indian Succession Act, 1925 (Sections 59 to 63)",

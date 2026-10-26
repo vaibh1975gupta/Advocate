@@ -1,12 +1,13 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  Scale,
   Award,
   GraduationCap,
   Languages,
   Landmark,
+  MapPin,
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
@@ -14,9 +15,9 @@ import { siteConfig } from "@/config/siteConfig";
 import { practiceAreas } from "@/data/practiceAreas";
 
 export const metadata: Metadata = {
-  title: `About ${siteConfig.advocate.fullName} | 20+ Years Legal Practice`,
+  title: `About ${siteConfig.advocate.fullName} | 25+ Years Legal Practice`,
   description:
-    "Professional biography, educational background, court jurisdictions, and ethical approach of Advocate [Full Name] with over 20 years of practice in Indian courts.",
+    "Professional biography, educational background, court jurisdictions, and ethical approach of Advocate Anil Kumar Gupta with over 25 years of practice in District & Sessions Court.",
 };
 
 export default function AboutPage() {
@@ -34,8 +35,9 @@ export default function AboutPage() {
               About {siteConfig.advocate.fullName}
             </h1>
             <p className="text-base sm:text-lg text-charcoal-200 font-sans leading-relaxed">
-              Grounded in more than 20 years of courtroom advocacy, meticulous evidentiary research,
-              and dedicated representation across the Indian judicial system.
+              Grounded in more than 25 years of courtroom advocacy, meticulous evidentiary research,
+              and dedicated representation before the District & Sessions Court and specialized
+              magisterial forums.
             </p>
           </div>
         </div>
@@ -47,11 +49,18 @@ export default function AboutPage() {
           {/* Left Column: Portrait & Key Facts */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-ivory-50 border border-gold-500/30 rounded-2xl p-6 sm:p-8 shadow-sm">
-              {/* Portrait Frame */}
-              <div className="w-48 h-48 mx-auto rounded-xl bg-navy-900 border-2 border-gold-500/40 flex items-center justify-center text-gold-400 mb-6 shadow-md relative overflow-hidden">
-                <Scale className="w-24 h-24 text-gold-400/80" />
+              {/* Actual Portrait Frame */}
+              <div className="w-56 h-64 mx-auto rounded-xl bg-navy-900 border-2 border-gold-500/60 overflow-hidden shadow-xl relative mb-6">
+                <Image
+                  src={siteConfig.advocate.portraitImage}
+                  alt={siteConfig.advocate.portraitAlt}
+                  fill
+                  sizes="(max-width: 768px) 224px, 224px"
+                  className="object-cover object-top"
+                  priority
+                />
                 <div className="absolute inset-x-0 bottom-0 py-1.5 bg-navy-950/90 text-[11px] text-center text-gold-300 font-mono">
-                  Verified Advocate Practice
+                  25+ Years Verified Practice
                 </div>
               </div>
 
@@ -70,7 +79,27 @@ export default function AboutPage() {
                     <span>Experience:</span>
                   </span>
                   <span className="font-semibold text-navy-900 text-right">
-                    More than 20 Years
+                    More than 25 Years
+                  </span>
+                </div>
+
+                <div className="flex items-start justify-between">
+                  <span className="text-charcoal-500 flex items-center gap-1.5">
+                    <Landmark className="w-4 h-4 text-gold-600" />
+                    <span>Primary Court:</span>
+                  </span>
+                  <span className="font-semibold text-navy-900 text-right">
+                    District & Sessions Court
+                  </span>
+                </div>
+
+                <div className="flex items-start justify-between">
+                  <span className="text-charcoal-500 flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4 text-gold-600" />
+                    <span>Chamber Office:</span>
+                  </span>
+                  <span className="font-semibold text-navy-900 text-right">
+                    Near SSP Office
                   </span>
                 </div>
 
@@ -83,16 +112,6 @@ export default function AboutPage() {
                     English, Hindi
                   </span>
                 </div>
-
-                <div className="flex items-start justify-between">
-                  <span className="text-charcoal-500 flex items-center gap-1.5">
-                    <Landmark className="w-4 h-4 text-gold-600" />
-                    <span>Primary Forums:</span>
-                  </span>
-                  <span className="font-semibold text-navy-900 text-right">
-                    High Court & District Courts
-                  </span>
-                </div>
               </div>
 
               {/* Strict BCI Compliance Notice regarding Enrolment */}
@@ -102,27 +121,21 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Educational Qualifications (Clearly Marked Placeholders) */}
+            {/* Educational Qualifications */}
             <div className="bg-ivory-50 border border-charcoal-200/80 rounded-2xl p-6 shadow-sm space-y-4">
               <h3 className="font-serif text-lg font-bold text-navy-900 flex items-center gap-2">
                 <GraduationCap className="w-5 h-5 text-gold-600" />
                 <span>Educational Qualifications</span>
               </h3>
-              <p className="text-xs text-charcoal-600 leading-relaxed">
-                Academic qualifications subject to individual chamber verification:
-              </p>
               <div className="space-y-3 text-xs">
                 {siteConfig.advocate.qualifications.map((q, idx) => (
                   <div key={idx} className="p-3 bg-white rounded border border-charcoal-100">
-                    <div className="font-semibold text-navy-900">{q.degree}</div>
+                    <div className="font-bold text-navy-900 text-sm">{q.degree}</div>
                     <div className="text-charcoal-600 mt-0.5">{q.institution}</div>
                     <div className="text-[11px] text-gold-700 font-mono mt-1">{q.year}</div>
                   </div>
                 ))}
               </div>
-              <p className="text-[11px] text-charcoal-500 italic">
-                * Note: Specific dates and universities may be customized with verified credentials.
-              </p>
             </div>
           </div>
 
@@ -130,27 +143,29 @@ export default function AboutPage() {
           <div className="lg:col-span-7 space-y-8">
             <div className="prose prose-navy max-w-none space-y-4 text-sm sm:text-base text-charcoal-800 leading-relaxed font-sans">
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-900">
-                A Practice Rooted in Practical Courtroom Insight
+                A Quarter Century of Courtroom Advocacy & Practical Insight
               </h2>
               <p>
-                {siteConfig.advocate.fullName} has devoted more than twenty years to the active
-                practice of law in India. Commencing his practice with foundational trials before
-                Magistrates and Sessions Courts, he has consistently maintained a rigorous litigation
-                and consultation calendar, extending representation to the High Court and specialized
-                statutory tribunals.
+                {siteConfig.advocate.fullName} has devoted more than twenty-five years to the active
+                practice of law, with his core litigation and advisory chambers situated near the SSP
+                office and serving the District & Sessions Court complex.
               </p>
               <p>
-                Over the course of two decades, the practice has navigated landmark statutory
-                reforms, evolving evidentiary standards, and significant legislative transitions,
-                including recent comprehensive overhauls to Indian criminal statutes. This sustained
-                courtroom exposure allows for a nuanced assessment of judicial discretion, witness
-                credibility, and the realistic outcomes of litigation.
+                Having represented clients across thousands of court proceedings, bail applications,
+                criminal trials, land boundary and partition disputes, family reconciliations, and
+                negotiable instruments litigation, Advocate Gupta has built a reputation centered on
+                painstaking evidentiary scrutiny, statutory precision, and dignified advocacy.
               </p>
               <p>
-                The chambers operate on the firm belief that effective lawyering requires equal parts
-                exhaustive pre-trial preparation and strategic courtroom presentation. Every brief
-                is subjected to painstaking factual inquiry, evidentiary cross-checking, and thorough
-                precedent analysis before any application is filed or hearing convened.
+                Over the course of two and a half decades, his practice has navigated landmark statutory
+                reforms, evolving evidentiary standards under the Evidence Act / Bharatiya Sakshya
+                Adhiniyam, and recent comprehensive overhauls to Indian criminal procedure under the
+                Bharatiya Nagarik Suraksha Sanhita (BNSS).
+              </p>
+              <p>
+                The chambers operate on the conviction that effective representation requires candid
+                counsel: advising clients with uncompromising honesty on the strengths and limitations
+                of their matter, preserving statutory deadlines, and discouraging frivolous litigation.
               </p>
             </div>
 
@@ -183,9 +198,9 @@ export default function AboutPage() {
                 Dedicated Practice Portfolio
               </h3>
               <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed">
-                The advocate exclusively accepts briefs within designated practice categories. In
-                compliance with specific practice instructions, general civil litigation is not
-                entertained, ensuring focused expertise:
+                Advocate Anil Kumar Gupta exclusively accepts briefs within designated practice
+                categories. In compliance with strict professional directives, general civil
+                litigation outside specific land/property titles is excluded:
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
