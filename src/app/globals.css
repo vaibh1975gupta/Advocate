@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
+@theme {
+  --color-navy-950: #0a1726;
+  --color-navy-900: #10243a;
+  --color-navy-800: #183350;
+  --color-navy-700: #214368;
+  --color-navy-600: #2d5580;
+  
+  --color-ivory-50: #fcfbf9;
+  --color-ivory-100: #f7f5f0;
+  --color-ivory-200: #ede8dc;
+  --color-ivory-300: #e0d7c3;
+
+  --color-gold-400: #cdb37a;
+  --color-gold-500: #b99a5b;
+  --color-gold-600: #9e8146;
+  --color-gold-700: #806734;
+
+  --color-charcoal-900: #242b33;
+  --color-charcoal-800: #343c46;
+  --color-charcoal-700: #4a5461;
+  --color-charcoal-600: #626d7c;
+  --color-charcoal-500: #7e8b9b;
+  --color-charcoal-200: #d6dae0;
+  --color-charcoal-100: #eceef1;
+
+  --font-serif: var(--font-playfair), "Cinzel", Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f5f0;
+  --foreground: #242b33;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f7f5f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b99a5b44;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b99a5b88;
+}
+
+/* Legal seal texture watermark effect helper */
+.legal-texture {
+  background-image: radial-gradient(rgba(185, 154, 91, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
 }

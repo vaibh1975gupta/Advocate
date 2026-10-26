@@ -1,0 +1,266 @@
+"use client";
+
+import React, { useActionState } from "react";
+import { Send, CheckCircle2, AlertCircle, ShieldAlert, Loader2, RefreshCw } from "lucide-react";
+import { submitEnquiryAction, ContactFormState } from "@/app/actions/contact";
+import { practiceAreas } from "@/data/practiceAreas";
+
+const initialState: ContactFormState = {
+  success: false,
+  message: "",
+};
+
+export function ContactForm() {
+  const [state, formAction, isPending] = useActionState(submitEnquiryAction, initialState);
+
+  if (state.success) {
+    return (
+      <div className="bg-ivory-50 border-2 border-gold-500/40 rounded-xl p-8 shadow-sm text-center animate-in zoom-in-95 duration-300">
+        <div className="w-16 h-16 bg-navy-900 text-gold-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold-500/40">
+          <CheckCircle2 className="w-8 h-8" />
+        </div>
+        <h3 className="font-serif text-2xl font-bold text-navy-900 mb-2">
+          Consultation Request Confirmed
+        </h3>
+        <p className="text-sm text-charcoal-700 max-w-md mx-auto mb-6 leading-relaxed">
+          {state.message}
+        </p>
+
+        {state.referenceId && (
+          <div className="inline-block bg-ivory-200/80 border border-gold-500/30 rounded-lg px-6 py-3 mb-6">
+            <span className="text-xs uppercase tracking-wider text-charcoal-600 block">
+              Inquiry Reference Number
+            </span>
+            <span className="font-mono text-base font-bold text-navy-900">
+              {state.referenceId}
+            </span>
+          </div>
+        )}
+
+        <div className="text-xs text-charcoal-600 bg-white/70 p-4 rounded-lg max-w-lg mx-auto border border-charcoal-200/60 text-left space-y-1.5 mb-6">
+          <div className="font-semibold text-navy-900 flex items-center gap-1.5">
+            <ShieldAlert className="w-4 h-4 text-gold-600" />
+            <span>Confidentiality & Response Protocol:</span>
+          </div>
+          <p>
+            Please note down your reference number. Our chamber assistant will review the matter
+            against our court calendar and reach out to you via your provided phone number or email.
+            No advocate-client privilege is formed until a formal vakalatnama or engagement is
+            executed.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => window.location.reload()}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider bg-navy-900 text-ivory-50 hover:bg-navy-800 transition-colors"
+        >
+          <RefreshCw className="w-3.5 h-3.5" />
+          <span>Submit Another Enquiry</span>
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form action={formAction} className="space-y-6">
+      {/* Honeypot field for bot spam trap */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="fax_number">Fax Number</label>
+        <input
+          type="text"
+          id="fax_number"
+          name="fax_number"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
+      {state.message && !state.success && (
+        <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+          <div>
+            <div className="font-semibold">Unable to submit form</div>
+            <p className="text-xs text-red-700 mt-0.5">{state.message}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Row 1: Full Name and Phone */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="fullName" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+            Full Name <span className="text-red-600">*</span>
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            required
+            placeholder="e.g. Rajesh Kumar"
+            className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
+              state.errors?.fullName ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+            }`}
+          />
+          {state.errors?.fullName && (
+            <p className="text-xs text-red-600 mt-1">{state.errors.fullName[0]}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+            Contact Number <span className="text-red-600">*</span>
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            required
+            placeholder="+91 98XXX XXXXX"
+            className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
+              state.errors?.phone ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+            }`}
+          />
+          {state.errors?.phone && (
+            <p className="text-xs text-red-600 mt-1">{state.errors.phone[0]}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Row 2: Email and Practice Area */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="email" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+            Email Address <span className="text-red-600">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="name@example.com"
+            className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
+              state.errors?.email ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+            }`}
+          />
+          {state.errors?.email && (
+            <p className="text-xs text-red-600 mt-1">{state.errors.email[0]}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="practiceArea" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+            Relevant Practice Area <span className="text-red-600">*</span>
+          </label>
+          <select
+            id="practiceArea"
+            name="practiceArea"
+            required
+            defaultValue=""
+            className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
+              state.errors?.practiceArea ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+            }`}
+          >
+            <option value="" disabled>
+              Select legal category
+            </option>
+            {practiceAreas.map((area) => (
+              <option key={area.id} value={area.id}>
+                {area.title}
+              </option>
+            ))}
+            <option value="general-consultation">General Legal Advisory & Opinion</option>
+          </select>
+          {state.errors?.practiceArea && (
+            <p className="text-xs text-red-600 mt-1">{state.errors.practiceArea[0]}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Preferred Timing */}
+      <div>
+        <label htmlFor="preferredTime" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+          Preferred Time for Office Call
+        </label>
+        <select
+          id="preferredTime"
+          name="preferredTime"
+          defaultValue="Morning (10:30 AM – 1:00 PM)"
+          className="w-full px-4 py-2.5 rounded border border-charcoal-200 bg-white text-sm text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
+        >
+          <option value="Morning (10:30 AM – 1:00 PM)">Morning (10:30 AM – 1:00 PM)</option>
+          <option value="Afternoon (2:30 PM – 5:00 PM)">Afternoon (2:30 PM – 5:00 PM)</option>
+          <option value="Evening (5:00 PM – 7:30 PM)">Evening (5:00 PM – 7:30 PM)</option>
+          <option value="Anytime during chamber hours">Anytime during chamber hours</option>
+        </select>
+      </div>
+
+      {/* Message / Brief Outline */}
+      <div>
+        <div className="flex justify-between items-center mb-1.5">
+          <label htmlFor="message" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider">
+            Brief Outline of Legal Query <span className="text-red-600">*</span>
+          </label>
+          <span className="text-[11px] text-charcoal-500">Do not include confidential passwords or OTPs</span>
+        </div>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={4}
+          placeholder="Please outline the nature of your legal question, court jurisdiction (if any), and timeline..."
+          className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
+            state.errors?.message ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+          }`}
+        />
+        {state.errors?.message && (
+          <p className="text-xs text-red-600 mt-1">{state.errors.message[0]}</p>
+        )}
+      </div>
+
+      {/* Bar Council of India Voluntary Request Consent Checkbox */}
+      <div className="p-3.5 bg-ivory-200/80 rounded border border-gold-500/30">
+        <div className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="disclaimerConsent"
+            name="disclaimerConsent"
+            required
+            className="mt-1 h-4 w-4 rounded border-charcoal-300 text-navy-900 focus:ring-gold-500"
+          />
+          <label htmlFor="disclaimerConsent" className="text-xs text-charcoal-700 leading-relaxed cursor-pointer">
+            <strong className="text-navy-900">BCI Compliance Confirmation:</strong> I confirm that I am seeking
+            preliminary information regarding chamber consultation of my own accord, without solicitation or
+            inducement. I acknowledge that submitting this form does not establish an advocate-client relationship.
+          </label>
+        </div>
+        {state.errors?.disclaimerConsent && (
+          <p className="text-xs text-red-600 mt-1.5 pl-7">{state.errors.disclaimerConsent[0]}</p>
+        )}
+      </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        disabled={isPending}
+        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded bg-navy-900 hover:bg-navy-800 disabled:bg-navy-950/60 text-ivory-50 text-sm font-semibold tracking-wider uppercase transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2"
+      >
+        {isPending ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin text-gold-400" />
+            <span>Validating & Recording Request...</span>
+          </>
+        ) : (
+          <>
+            <Send className="w-4 h-4 text-gold-400" />
+            <span>Submit Consultation Enquiry</span>
+          </>
+        )}
+      </button>
+
+      <p className="text-[11px] text-center text-charcoal-500">
+        All communications remain strictly confidential under the Indian Evidence Act.
+      </p>
+    </form>
+  );
+}
