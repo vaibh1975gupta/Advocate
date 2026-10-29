@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 import { practiceAreas } from "@/data/practiceAreas";
+import { TiltCard } from "@/components/animations/TiltCard";
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
 
 export const metadata: Metadata = {
   title: `About ${siteConfig.advocate.fullName} | 25+ Years Legal Practice`,
@@ -50,19 +52,21 @@ export default function AboutPage() {
           <div className="lg:col-span-5 space-y-6">
             <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
               {/* Actual Portrait Frame */}
-              <div className="w-56 h-64 mx-auto rounded-2xl bg-navy-900 border-2 border-gold-500/70 overflow-hidden shadow-2xl relative mb-6">
-                <Image
-                  src={siteConfig.advocate.portraitImage}
-                  alt={siteConfig.advocate.portraitAlt}
-                  fill
-                  sizes="(max-width: 768px) 224px, 224px"
-                  className="object-cover object-top"
-                  priority
-                />
-                <div className="absolute inset-x-0 bottom-0 py-1.5 bg-navy-950/85 backdrop-blur-md text-[11px] text-center text-gold-300 font-mono">
-                  25+ Years Verified Practice
+              <TiltCard maxTilt={8}>
+                <div className="w-56 h-64 mx-auto rounded-2xl bg-navy-900 border-2 border-gold-500/70 overflow-hidden shadow-2xl relative mb-6">
+                  <Image
+                    src={siteConfig.advocate.portraitImage}
+                    alt={siteConfig.advocate.portraitAlt}
+                    fill
+                    sizes="(max-width: 768px) 224px, 224px"
+                    className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                  <div className="absolute inset-x-0 bottom-0 py-1.5 bg-navy-950/85 backdrop-blur-md text-[11px] text-center text-gold-300 font-mono">
+                    <AnimatedCounter end={25} suffix="+" /> Years Verified Practice
+                  </div>
                 </div>
-              </div>
+              </TiltCard>
 
               <h2 className="font-serif text-2xl font-bold text-navy-950 text-center">
                 {siteConfig.advocate.fullName}

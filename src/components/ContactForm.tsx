@@ -4,6 +4,7 @@ import React, { useActionState } from "react";
 import { Send, CheckCircle2, AlertCircle, ShieldAlert, Loader2, RefreshCw } from "lucide-react";
 import { submitEnquiryAction, ContactFormState } from "@/app/actions/contact";
 import { practiceAreas } from "@/data/practiceAreas";
+import { ConfettiCelebration } from "@/components/animations/ConfettiCelebration";
 
 const initialState: ContactFormState = {
   success: false,
@@ -16,6 +17,7 @@ export function ContactForm() {
   if (state.success) {
     return (
       <div className="glass-panel-gold rounded-2xl p-8 sm:p-10 shadow-xl text-center animate-in zoom-in-95 duration-300 relative overflow-hidden">
+        <ConfettiCelebration />
         <div className="w-16 h-16 bg-navy-900/90 backdrop-blur-md text-gold-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold-500/50 shadow-md">
           <CheckCircle2 className="w-8 h-8" />
         </div>
