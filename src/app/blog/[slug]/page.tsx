@@ -108,23 +108,23 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10">
           {/* Article Excerpt Card */}
-          <div className="p-6 rounded-xl bg-ivory-50 border-l-4 border-gold-500 text-sm sm:text-base text-charcoal-800 font-sans leading-relaxed italic shadow-sm">
+          <div className="p-6 rounded-2xl glass-panel-gold border-l-4 border-l-gold-500 text-sm sm:text-base text-charcoal-800 font-sans leading-relaxed italic shadow-xs">
             {article.excerpt}
           </div>
 
           {/* Table of Contents */}
-          <nav aria-label="Table of Contents" className="p-5 rounded-xl bg-ivory-200/70 border border-charcoal-200/80">
-            <span className="text-xs uppercase tracking-widest text-navy-900 font-bold block mb-2.5 flex items-center gap-1.5">
+          <nav aria-label="Table of Contents" className="p-6 rounded-2xl glass-panel border border-white/80 shadow-xs">
+            <span className="text-xs uppercase tracking-widest text-navy-950 font-bold block mb-2.5 flex items-center gap-1.5">
               <BookOpen className="w-4 h-4 text-gold-600" />
               <span>Contents in this Guide</span>
             </span>
             <ul className="space-y-1.5 text-xs text-charcoal-800">
               {article.content.map((sec, i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <span className="text-gold-700 font-mono">0{i + 1}.</span>
+                  <span className="text-gold-700 font-mono font-semibold">0{i + 1}.</span>
                   <a
                     href={`#section-${i}`}
-                    className="hover:text-gold-700 hover:underline transition-colors"
+                    className="hover:text-gold-700 hover:underline transition-colors font-medium"
                   >
                     {sec.sectionHeading}
                   </a>
@@ -132,8 +132,8 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               ))}
               {article.faqs && article.faqs.length > 0 && (
                 <li className="flex items-center gap-2">
-                  <span className="text-gold-700 font-mono">0{article.content.length + 1}.</span>
-                  <a href="#faqs" className="hover:text-gold-700 hover:underline transition-colors">
+                  <span className="text-gold-700 font-mono font-semibold">0{article.content.length + 1}.</span>
+                  <a href="#faqs" className="hover:text-gold-700 hover:underline transition-colors font-medium">
                     Frequently Asked Legal Questions
                   </a>
                 </li>
@@ -145,7 +145,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           <div className="space-y-10 text-charcoal-800 font-sans leading-relaxed text-sm sm:text-base">
             {article.content.map((sec, idx) => (
               <section key={idx} id={`section-${idx}`} className="space-y-4">
-                <h2 className="font-serif text-xl sm:text-2xl font-bold text-navy-900 pt-2 border-b border-charcoal-200 pb-2">
+                <h2 className="font-serif text-xl sm:text-2xl font-bold text-navy-950 pt-2 border-b border-charcoal-200/60 pb-2">
                   {sec.sectionHeading}
                 </h2>
                 {sec.paragraphs.map((p, pIdx) => (
@@ -159,14 +159,14 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
           {/* Statutory References */}
           {article.statutoryReferences && article.statutoryReferences.length > 0 && (
-            <div className="p-6 bg-ivory-50 rounded-xl border border-charcoal-200 space-y-3">
-              <h3 className="font-serif text-lg font-bold text-navy-900 flex items-center gap-2">
+            <div className="p-6 glass-panel rounded-2xl border border-white/80 space-y-3">
+              <h3 className="font-serif text-lg font-bold text-navy-950 flex items-center gap-2">
                 <Scale className="w-5 h-5 text-gold-600" />
                 <span>Statutory References & Acts</span>
               </h3>
               <ul className="space-y-1.5 text-xs text-charcoal-700">
                 {article.statutoryReferences.map((ref, i) => (
-                  <li key={i} className="flex items-start gap-2">
+                  <li key={i} className="flex items-start gap-2.5 p-1.5 rounded-lg bg-white/50">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold-600 shrink-0 mt-1.5" />
                     <span>{ref}</span>
                   </li>
@@ -178,7 +178,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           {/* FAQs (if available) */}
           {article.faqs && article.faqs.length > 0 && (
             <section id="faqs" className="space-y-4 pt-4">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-navy-900 flex items-center gap-2">
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-navy-950 flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-gold-600" />
                 <span>Frequently Asked Questions</span>
               </h2>
@@ -186,9 +186,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                 {article.faqs.map((faq, i) => (
                   <div
                     key={i}
-                    className="p-5 rounded-xl bg-ivory-50 border border-charcoal-200 space-y-2"
+                    className="p-5 rounded-2xl glass-card-interactive space-y-2"
                   >
-                    <h3 className="font-serif font-bold text-navy-900 text-sm sm:text-base">
+                    <h3 className="font-serif font-bold text-navy-950 text-sm sm:text-base">
                       {faq.question}
                     </h3>
                     <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed font-sans">
@@ -201,7 +201,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           )}
 
           {/* Tags */}
-          <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-charcoal-200">
+          <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-charcoal-200/60">
             <span className="text-xs text-charcoal-500 font-semibold flex items-center gap-1">
               <Tag className="w-3.5 h-3.5" />
               <span>Keywords:</span>
@@ -209,18 +209,18 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             {article.tags.map((tag, i) => (
               <span
                 key={i}
-                className="text-xs text-charcoal-700 bg-ivory-200 px-3 py-1 rounded-full font-medium"
+                className="text-xs text-charcoal-800 bg-white/80 backdrop-blur-sm border border-charcoal-200/50 px-3 py-1 rounded-full font-medium"
               >
-                {tag}
+                #{tag}
               </span>
             ))}
           </div>
 
           {/* Educational Disclaimer */}
-          <div className="p-5 rounded-xl bg-ivory-200/80 border border-gold-500/30 text-xs text-charcoal-700 leading-relaxed flex items-start gap-3">
+          <div className="p-5 rounded-2xl bg-white/70 backdrop-blur-md border border-gold-500/40 text-xs text-charcoal-700 leading-relaxed flex items-start gap-3 shadow-xs">
             <ShieldAlert className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
             <div>
-              <strong className="text-navy-900">Important Disclaimer: </strong>
+              <strong className="text-navy-950">Important Disclaimer: </strong>
               This article is published for educational purposes only and reflects general statutory
               principles under Indian law. It should not be treated as a legal opinion or formal
               legal advice. Individual cases depend heavily on specific documentary evidence and
@@ -229,7 +229,8 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           </div>
 
           {/* Chamber Enquiry Box */}
-          <div className="p-8 bg-navy-900 text-ivory-100 rounded-2xl border border-gold-500/30 text-center space-y-4">
+          <div className="p-8 sm:p-10 glass-dark text-ivory-100 rounded-3xl text-center space-y-4 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-2xl pointer-events-none" />
             <h3 className="font-serif text-2xl font-bold text-ivory-50">
               Need Specific Legal Clarification?
             </h3>
@@ -240,7 +241,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:translate-y-[-1px]"
               >
                 <span>Chamber Appointment Enquiry</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -250,14 +251,14 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
           {/* Related Articles */}
           {relatedArticles.length > 0 && (
-            <div className="space-y-4 pt-6 border-t border-charcoal-200">
-              <h3 className="font-serif text-xl font-bold text-navy-900">Related Legal Guides</h3>
+            <div className="space-y-4 pt-6 border-t border-charcoal-200/60">
+              <h3 className="font-serif text-xl font-bold text-navy-950">Related Legal Guides</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {relatedArticles.map((rel) => (
                   <Link
                     key={rel.slug}
                     href={`/blog/${rel.slug}`}
-                    className="p-4 bg-ivory-50 rounded-xl border border-charcoal-200 hover:border-gold-500 transition-all group flex flex-col justify-between"
+                    className="p-4 glass-card-interactive rounded-2xl flex flex-col justify-between"
                   >
                     <div>
                       <span className="text-[10px] font-semibold uppercase text-gold-700 block mb-1">

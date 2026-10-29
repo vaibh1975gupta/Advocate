@@ -128,11 +128,11 @@ export function Footer() {
               <Clock className="w-4 h-4 text-gold-500" />
               Chamber Timings
             </h3>
-            <div className="bg-navy-900/80 p-3.5 rounded border border-navy-800 space-y-2 text-xs">
+            <div className="bg-white/[0.04] backdrop-blur-md p-4 rounded-2xl border border-white/10 space-y-2 text-xs shadow-inner">
               {siteConfig.contact.hours.map((h, i) => (
                 <div key={i} className="flex justify-between items-center text-charcoal-200">
                   <span className="text-ivory-200 font-medium">{h.days}:</span>
-                  <span className="text-gold-400">{h.timing}</span>
+                  <span className="text-gold-400 font-semibold">{h.timing}</span>
                 </div>
               ))}
             </div>
@@ -148,8 +148,8 @@ export function Footer() {
         </div>
 
         {/* Bar Council Mandatory Compliance Disclaimer */}
-        <div className="my-8 p-4 rounded bg-navy-900/60 border border-gold-500/20 text-xs text-charcoal-200 leading-relaxed font-sans">
-          <div className="flex items-center gap-2 text-gold-400 font-semibold mb-1">
+        <div className="my-8 p-5 rounded-2xl bg-white/[0.04] backdrop-blur-md border border-gold-500/30 text-xs text-charcoal-200 leading-relaxed font-sans shadow-lg">
+          <div className="flex items-center gap-2 text-gold-400 font-bold mb-1.5">
             <Scale className="w-4 h-4" />
             <span>Bar Council of India Rule 36 Mandatory Notice</span>
           </div>

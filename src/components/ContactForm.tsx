@@ -15,30 +15,30 @@ export function ContactForm() {
 
   if (state.success) {
     return (
-      <div className="bg-ivory-50 border-2 border-gold-500/40 rounded-xl p-8 shadow-sm text-center animate-in zoom-in-95 duration-300">
-        <div className="w-16 h-16 bg-navy-900 text-gold-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold-500/40">
+      <div className="glass-panel-gold rounded-2xl p-8 sm:p-10 shadow-xl text-center animate-in zoom-in-95 duration-300 relative overflow-hidden">
+        <div className="w-16 h-16 bg-navy-900/90 backdrop-blur-md text-gold-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold-500/50 shadow-md">
           <CheckCircle2 className="w-8 h-8" />
         </div>
-        <h3 className="font-serif text-2xl font-bold text-navy-900 mb-2">
+        <h3 className="font-serif text-2xl font-bold text-navy-950 mb-2">
           Consultation Request Confirmed
         </h3>
-        <p className="text-sm text-charcoal-700 max-w-md mx-auto mb-6 leading-relaxed">
+        <p className="text-sm text-charcoal-700 max-w-md mx-auto mb-6 leading-relaxed font-sans">
           {state.message}
         </p>
 
         {state.referenceId && (
-          <div className="inline-block bg-ivory-200/80 border border-gold-500/30 rounded-lg px-6 py-3 mb-6">
-            <span className="text-xs uppercase tracking-wider text-charcoal-600 block">
+          <div className="inline-block bg-white/80 backdrop-blur-md border border-gold-500/40 rounded-xl px-6 py-3 mb-6 shadow-xs">
+            <span className="text-xs uppercase tracking-wider text-charcoal-600 block font-semibold">
               Inquiry Reference Number
             </span>
-            <span className="font-mono text-base font-bold text-navy-900">
+            <span className="font-mono text-base font-bold text-navy-950">
               {state.referenceId}
             </span>
           </div>
         )}
 
-        <div className="text-xs text-charcoal-600 bg-white/70 p-4 rounded-lg max-w-lg mx-auto border border-charcoal-200/60 text-left space-y-1.5 mb-6">
-          <div className="font-semibold text-navy-900 flex items-center gap-1.5">
+        <div className="text-xs text-charcoal-700 bg-white/60 backdrop-blur-sm p-4 rounded-xl max-w-lg mx-auto border border-charcoal-200/60 text-left space-y-1.5 mb-6 shadow-xs">
+          <div className="font-semibold text-navy-950 flex items-center gap-1.5">
             <ShieldAlert className="w-4 h-4 text-gold-600" />
             <span>Confidentiality & Response Protocol:</span>
           </div>
@@ -53,7 +53,7 @@ export function ContactForm() {
         <button
           type="button"
           onClick={() => window.location.reload()}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider bg-navy-900 text-ivory-50 hover:bg-navy-800 transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-navy-900 text-ivory-50 hover:bg-navy-800 transition-all shadow-md"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           <span>Submit Another Enquiry</span>
@@ -77,7 +77,7 @@ export function ContactForm() {
       </div>
 
       {state.message && !state.success && (
-        <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm flex items-start gap-3">
+        <div className="p-4 rounded-xl bg-red-50/90 backdrop-blur-md border border-red-200 text-red-800 text-sm flex items-start gap-3 shadow-xs">
           <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
           <div>
             <div className="font-semibold">Unable to submit form</div>
@@ -89,7 +89,7 @@ export function ContactForm() {
       {/* Row 1: Full Name and Phone */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="fullName" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+          <label htmlFor="fullName" className="block text-xs font-bold text-navy-950 uppercase tracking-wider mb-1.5">
             Full Name <span className="text-red-600">*</span>
           </label>
           <input
@@ -98,8 +98,8 @@ export function ContactForm() {
             name="fullName"
             required
             placeholder="e.g. Rajesh Kumar"
-            className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
-              state.errors?.fullName ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+            className={`w-full px-4 py-2.5 rounded-xl glass-input text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none transition-all ${
+              state.errors?.fullName ? "border-red-500 bg-red-50/30" : ""
             }`}
           />
           {state.errors?.fullName && (
@@ -108,7 +108,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+          <label htmlFor="phone" className="block text-xs font-bold text-navy-950 uppercase tracking-wider mb-1.5">
             Contact Number <span className="text-red-600">*</span>
           </label>
           <input
@@ -117,8 +117,8 @@ export function ContactForm() {
             name="phone"
             required
             placeholder="+91 98XXX XXXXX"
-            className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
-              state.errors?.phone ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+            className={`w-full px-4 py-2.5 rounded-xl glass-input text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none transition-all ${
+              state.errors?.phone ? "border-red-500 bg-red-50/30" : ""
             }`}
           />
           {state.errors?.phone && (
@@ -130,7 +130,7 @@ export function ContactForm() {
       {/* Row 2: Email and Practice Area */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="email" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+          <label htmlFor="email" className="block text-xs font-bold text-navy-950 uppercase tracking-wider mb-1.5">
             Email Address <span className="text-red-600">*</span>
           </label>
           <input
@@ -139,8 +139,8 @@ export function ContactForm() {
             name="email"
             required
             placeholder="name@example.com"
-            className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
-              state.errors?.email ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+            className={`w-full px-4 py-2.5 rounded-xl glass-input text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none transition-all ${
+              state.errors?.email ? "border-red-500 bg-red-50/30" : ""
             }`}
           />
           {state.errors?.email && (
@@ -149,7 +149,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="practiceArea" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+          <label htmlFor="practiceArea" className="block text-xs font-bold text-navy-950 uppercase tracking-wider mb-1.5">
             Relevant Practice Area <span className="text-red-600">*</span>
           </label>
           <select
@@ -157,8 +157,8 @@ export function ContactForm() {
             name="practiceArea"
             required
             defaultValue=""
-            className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
-              state.errors?.practiceArea ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+            className={`w-full px-4 py-2.5 rounded-xl glass-input text-sm text-charcoal-900 focus:outline-none transition-all ${
+              state.errors?.practiceArea ? "border-red-500 bg-red-50/30" : ""
             }`}
           >
             <option value="" disabled>
@@ -179,14 +179,14 @@ export function ContactForm() {
 
       {/* Preferred Timing */}
       <div>
-        <label htmlFor="preferredTime" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider mb-1.5">
+        <label htmlFor="preferredTime" className="block text-xs font-bold text-navy-950 uppercase tracking-wider mb-1.5">
           Preferred Time for Office Call
         </label>
         <select
           id="preferredTime"
           name="preferredTime"
           defaultValue="Morning (10:30 AM – 1:00 PM)"
-          className="w-full px-4 py-2.5 rounded border border-charcoal-200 bg-white text-sm text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-gold-500"
+          className="w-full px-4 py-2.5 rounded-xl glass-input text-sm text-charcoal-900 focus:outline-none"
         >
           <option value="Morning (10:30 AM – 1:00 PM)">Morning (10:30 AM – 1:00 PM)</option>
           <option value="Afternoon (2:30 PM – 5:00 PM)">Afternoon (2:30 PM – 5:00 PM)</option>
@@ -198,7 +198,7 @@ export function ContactForm() {
       {/* Message / Brief Outline */}
       <div>
         <div className="flex justify-between items-center mb-1.5">
-          <label htmlFor="message" className="block text-xs font-semibold text-navy-900 uppercase tracking-wider">
+          <label htmlFor="message" className="block text-xs font-bold text-navy-950 uppercase tracking-wider">
             Brief Outline of Legal Query <span className="text-red-600">*</span>
           </label>
           <span className="text-[11px] text-charcoal-500">Do not include confidential passwords or OTPs</span>
@@ -209,8 +209,8 @@ export function ContactForm() {
           required
           rows={4}
           placeholder="Please outline the nature of your legal question, court jurisdiction (if any), and timeline..."
-          className={`w-full px-4 py-2.5 rounded border bg-white text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all ${
-            state.errors?.message ? "border-red-500 bg-red-50/20" : "border-charcoal-200"
+          className={`w-full px-4 py-2.5 rounded-xl glass-input text-sm text-charcoal-900 placeholder-charcoal-400 focus:outline-none transition-all ${
+            state.errors?.message ? "border-red-500 bg-red-50/30" : ""
           }`}
         />
         {state.errors?.message && (
@@ -219,7 +219,7 @@ export function ContactForm() {
       </div>
 
       {/* Bar Council of India Voluntary Request Consent Checkbox */}
-      <div className="p-3.5 bg-ivory-200/80 rounded border border-gold-500/30">
+      <div className="p-4 bg-white/70 backdrop-blur-md rounded-xl border border-gold-500/40 shadow-xs">
         <div className="flex items-start gap-3">
           <input
             type="checkbox"
@@ -228,8 +228,8 @@ export function ContactForm() {
             required
             className="mt-1 h-4 w-4 rounded border-charcoal-300 text-navy-900 focus:ring-gold-500"
           />
-          <label htmlFor="disclaimerConsent" className="text-xs text-charcoal-700 leading-relaxed cursor-pointer">
-            <strong className="text-navy-900">BCI Compliance Confirmation:</strong> I confirm that I am seeking
+          <label htmlFor="disclaimerConsent" className="text-xs text-charcoal-800 leading-relaxed cursor-pointer font-sans">
+            <strong className="text-navy-950">BCI Compliance Confirmation:</strong> I confirm that I am seeking
             preliminary information regarding chamber consultation of my own accord, without solicitation or
             inducement. I acknowledge that submitting this form does not establish an advocate-client relationship.
           </label>
@@ -243,7 +243,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded bg-navy-900 hover:bg-navy-800 disabled:bg-navy-950/60 text-ivory-50 text-sm font-semibold tracking-wider uppercase transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2"
+        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-navy-900/95 hover:bg-navy-800 disabled:bg-navy-950/60 text-ivory-50 text-sm font-bold tracking-wider uppercase transition-all shadow-lg shadow-navy-950/20 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 hover:translate-y-[-1px]"
       >
         {isPending ? (
           <>

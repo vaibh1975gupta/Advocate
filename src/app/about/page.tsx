@@ -48,9 +48,9 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Portrait & Key Facts */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-ivory-50 border border-gold-500/30 rounded-2xl p-6 sm:p-8 shadow-sm">
+            <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
               {/* Actual Portrait Frame */}
-              <div className="w-56 h-64 mx-auto rounded-xl bg-navy-900 border-2 border-gold-500/60 overflow-hidden shadow-xl relative mb-6">
+              <div className="w-56 h-64 mx-auto rounded-2xl bg-navy-900 border-2 border-gold-500/70 overflow-hidden shadow-2xl relative mb-6">
                 <Image
                   src={siteConfig.advocate.portraitImage}
                   alt={siteConfig.advocate.portraitAlt}
@@ -59,80 +59,80 @@ export default function AboutPage() {
                   className="object-cover object-top"
                   priority
                 />
-                <div className="absolute inset-x-0 bottom-0 py-1.5 bg-navy-950/90 text-[11px] text-center text-gold-300 font-mono">
+                <div className="absolute inset-x-0 bottom-0 py-1.5 bg-navy-950/85 backdrop-blur-md text-[11px] text-center text-gold-300 font-mono">
                   25+ Years Verified Practice
                 </div>
               </div>
 
-              <h2 className="font-serif text-2xl font-bold text-navy-900 text-center">
+              <h2 className="font-serif text-2xl font-bold text-navy-950 text-center">
                 {siteConfig.advocate.fullName}
               </h2>
-              <p className="text-xs uppercase tracking-widest text-gold-600 text-center font-sans mt-1">
+              <p className="text-xs uppercase tracking-widest text-gold-700 text-center font-sans mt-1 font-bold">
                 {siteConfig.advocate.formalTitle}
               </p>
 
               {/* Fast Facts Card */}
-              <div className="mt-6 pt-6 border-t border-charcoal-200/60 space-y-3.5 text-xs">
-                <div className="flex items-start justify-between">
-                  <span className="text-charcoal-500 flex items-center gap-1.5">
+              <div className="mt-6 pt-6 border-t border-charcoal-200/50 space-y-3 text-xs">
+                <div className="flex items-start justify-between p-2.5 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-xs">
+                  <span className="text-charcoal-600 flex items-center gap-1.5">
                     <Award className="w-4 h-4 text-gold-600" />
                     <span>Experience:</span>
                   </span>
-                  <span className="font-semibold text-navy-900 text-right">
+                  <span className="font-bold text-navy-950 text-right">
                     More than 25 Years
                   </span>
                 </div>
 
-                <div className="flex items-start justify-between">
-                  <span className="text-charcoal-500 flex items-center gap-1.5">
+                <div className="flex items-start justify-between p-2.5 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-xs">
+                  <span className="text-charcoal-600 flex items-center gap-1.5">
                     <Landmark className="w-4 h-4 text-gold-600" />
                     <span>Primary Court:</span>
                   </span>
-                  <span className="font-semibold text-navy-900 text-right">
+                  <span className="font-bold text-navy-950 text-right">
                     District & Sessions Court
                   </span>
                 </div>
 
-                <div className="flex items-start justify-between">
-                  <span className="text-charcoal-500 flex items-center gap-1.5">
+                <div className="flex items-start justify-between p-2.5 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-xs">
+                  <span className="text-charcoal-600 flex items-center gap-1.5">
                     <MapPin className="w-4 h-4 text-gold-600" />
                     <span>Chamber Office:</span>
                   </span>
-                  <span className="font-semibold text-navy-900 text-right">
+                  <span className="font-bold text-navy-950 text-right">
                     Near SSP Office
                   </span>
                 </div>
 
-                <div className="flex items-start justify-between">
-                  <span className="text-charcoal-500 flex items-center gap-1.5">
+                <div className="flex items-start justify-between p-2.5 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-xs">
+                  <span className="text-charcoal-600 flex items-center gap-1.5">
                     <Languages className="w-4 h-4 text-gold-600" />
                     <span>Languages:</span>
                   </span>
-                  <span className="font-semibold text-navy-900 text-right">
+                  <span className="font-bold text-navy-950 text-right">
                     English, Hindi
                   </span>
                 </div>
               </div>
 
               {/* Strict BCI Compliance Notice regarding Enrolment */}
-              <div className="mt-6 p-3 bg-ivory-200/80 rounded border border-charcoal-200/60 text-[11px] text-charcoal-600 leading-relaxed italic">
+              <div className="mt-6 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-charcoal-200/50 text-[11px] text-charcoal-600 leading-relaxed italic">
                 Notice: In accordance with Bar Council of India guidelines and user privacy
                 directives, Bar enrolment numbers are not displayed publicly on this website.
               </div>
             </div>
 
             {/* Educational Qualifications */}
-            <div className="bg-ivory-50 border border-charcoal-200/80 rounded-2xl p-6 shadow-sm space-y-4">
-              <h3 className="font-serif text-lg font-bold text-navy-900 flex items-center gap-2">
+            <div className="glass-panel rounded-3xl p-6 shadow-md space-y-4">
+              <h3 className="font-serif text-lg font-bold text-navy-950 flex items-center gap-2">
                 <GraduationCap className="w-5 h-5 text-gold-600" />
                 <span>Educational Qualifications</span>
               </h3>
               <div className="space-y-3 text-xs">
                 {siteConfig.advocate.qualifications.map((q, idx) => (
-                  <div key={idx} className="p-3 bg-white rounded border border-charcoal-100">
-                    <div className="font-bold text-navy-900 text-sm">{q.degree}</div>
+                  <div key={idx} className="p-3.5 bg-white/80 backdrop-blur-sm rounded-xl border border-charcoal-100 shadow-xs">
+                    <div className="font-bold text-navy-950 text-sm">{q.degree}</div>
                     <div className="text-charcoal-600 mt-0.5">{q.institution}</div>
-                    <div className="text-[11px] text-gold-700 font-mono mt-1">{q.year}</div>
+                    <div className="text-[11px] text-gold-700 font-mono mt-1 font-semibold">{q.year}</div>
                   </div>
                 ))}
               </div>
@@ -178,9 +178,9 @@ export default function AboutPage() {
                 {siteConfig.advocate.coreValues.map((val, idx) => (
                   <div
                     key={idx}
-                    className="p-5 bg-ivory-50 rounded-xl border border-charcoal-200/80 space-y-2"
+                    className="p-5 glass-card-interactive rounded-2xl space-y-2"
                   >
-                    <div className="font-serif font-bold text-navy-900 text-base flex items-center gap-2">
+                    <div className="font-serif font-bold text-navy-950 text-base flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0" />
                       <span>{val.title}</span>
                     </div>
@@ -194,7 +194,7 @@ export default function AboutPage() {
 
             {/* Areas of Practice Handled */}
             <div className="space-y-4 pt-4 border-t border-charcoal-200">
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-navy-900">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-navy-950">
                 Dedicated Practice Portfolio
               </h3>
               <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed">
@@ -208,7 +208,7 @@ export default function AboutPage() {
                   <Link
                     key={area.id}
                     href={`/practice-areas/${area.slug}`}
-                    className="p-3.5 bg-ivory-50 hover:bg-ivory-200 rounded-lg border border-charcoal-200 flex items-center justify-between text-xs font-semibold text-navy-900 group transition-colors"
+                    className="p-3.5 bg-white/70 hover:bg-white/95 backdrop-blur-md rounded-xl border border-charcoal-200/60 shadow-xs flex items-center justify-between text-xs font-bold text-navy-950 group transition-all"
                   >
                     <span>{area.title}</span>
                     <ArrowRight className="w-4 h-4 text-gold-600 group-hover:translate-x-1 transition-transform" />
@@ -218,7 +218,8 @@ export default function AboutPage() {
             </div>
 
             {/* Court Jurisdictions */}
-            <div className="p-6 bg-navy-900 text-ivory-100 rounded-2xl border border-gold-500/30 space-y-3">
+            <div className="p-6 glass-dark text-ivory-100 rounded-3xl space-y-3 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-2xl pointer-events-none" />
               <h4 className="font-serif text-lg font-bold text-ivory-50 flex items-center gap-2">
                 <Landmark className="w-5 h-5 text-gold-400" />
                 <span>Regular Court Jurisdictions</span>

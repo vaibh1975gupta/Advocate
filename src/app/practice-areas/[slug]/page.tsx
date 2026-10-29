@@ -87,19 +87,19 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
           {/* Left Column: Scope, Procedure, Statutes */}
           <div className="lg:col-span-8 space-y-10">
             {/* Overview & Procedure */}
-            <div className="bg-ivory-50 border border-charcoal-200/90 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
-              <h2 className="font-serif text-2xl font-bold text-navy-900 flex items-center gap-2">
+            <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-md space-y-4 relative overflow-hidden">
+              <h2 className="font-serif text-2xl font-bold text-navy-950 flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-gold-600" />
                 <span>Procedural Overview & Judicial Approach</span>
               </h2>
-              <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed font-sans">
+              <p className="text-sm sm:text-base text-charcoal-800 leading-relaxed font-sans">
                 {area.procedureOverview}
               </p>
             </div>
 
             {/* Scope of Legal Work */}
-            <div className="bg-ivory-50 border border-charcoal-200/90 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
-              <h2 className="font-serif text-2xl font-bold text-navy-900">
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 shadow-md space-y-4 relative overflow-hidden">
+              <h2 className="font-serif text-2xl font-bold text-navy-950">
                 Scope of Representation & Advisory Services
               </h2>
               <p className="text-xs sm:text-sm text-charcoal-600 leading-relaxed">
@@ -109,10 +109,10 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
                 {area.scopeOfWork.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-3.5 bg-white rounded-lg border border-charcoal-100 flex items-start gap-2.5"
+                    className="p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-charcoal-100 flex items-start gap-2.5 shadow-xs"
                   >
                     <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
-                    <span className="text-xs text-charcoal-800 font-medium leading-relaxed">
+                    <span className="text-xs text-charcoal-800 font-semibold leading-relaxed">
                       {item}
                     </span>
                   </div>
@@ -121,14 +121,14 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
             </div>
 
             {/* Governing Statutes */}
-            <div className="bg-ivory-50 border border-charcoal-200/90 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
-              <h2 className="font-serif text-xl font-bold text-navy-900 flex items-center gap-2">
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 shadow-md space-y-4 relative overflow-hidden">
+              <h2 className="font-serif text-xl font-bold text-navy-950 flex items-center gap-2">
                 <Scale className="w-5 h-5 text-gold-600" />
                 <span>Key Statutory Framework</span>
               </h2>
               <ul className="space-y-2 text-xs sm:text-sm text-charcoal-700">
                 {area.keyStatutes.map((statute, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5">
+                  <li key={idx} className="flex items-start gap-2.5 p-2 rounded-lg bg-white/50 backdrop-blur-xs">
                     <span className="w-2 h-2 rounded-full bg-gold-600 shrink-0 mt-2" />
                     <span>{statute}</span>
                   </li>
@@ -137,10 +137,10 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
             </div>
 
             {/* Important Ethical Disclaimer */}
-            <div className="p-5 rounded-xl bg-ivory-200/80 border border-gold-500/30 text-xs text-charcoal-700 leading-relaxed flex items-start gap-3">
+            <div className="p-5 rounded-2xl bg-white/70 backdrop-blur-md border border-gold-500/40 text-xs text-charcoal-700 leading-relaxed flex items-start gap-3 shadow-xs">
               <ShieldAlert className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-navy-900">Ethical Notice & Limitation: </strong>
+                <strong className="text-navy-950">Ethical Notice & Limitation: </strong>
                 {area.importantNote} Indian legal ethics prohibit contingency fees or promises of
                 favorable rulings.
               </div>
@@ -150,7 +150,8 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
           {/* Right Column: Chamber Contact Card & Other Practice Areas */}
           <div className="lg:col-span-4 space-y-6">
             {/* Consultation Card */}
-            <div className="bg-navy-900 text-ivory-100 rounded-2xl p-6 sm:p-8 border border-gold-500/30 space-y-5 shadow-lg">
+            <div className="glass-dark text-ivory-100 rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-2xl pointer-events-none" />
               <div className="text-xs uppercase tracking-widest text-gold-400 font-semibold">
                 Chamber Consultation
               </div>
@@ -165,7 +166,7 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
               <div className="space-y-3 pt-2">
                 <Link
                   href={`/contact?area=${area.slug}`}
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:translate-y-[-1px]"
                 >
                   <span>Chamber Appointment Enquiry</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -173,7 +174,7 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
 
                 <a
                   href={`tel:${siteConfig.contact.mainPhone}`}
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded bg-navy-800 hover:bg-navy-700 text-ivory-200 text-xs font-medium border border-navy-700 transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-navy-800/80 hover:bg-navy-700/80 backdrop-blur-sm text-ivory-200 text-xs font-semibold border border-navy-700 transition-all"
                 >
                   <Phone className="w-3.5 h-3.5 text-gold-400" />
                   <span>Call {siteConfig.contact.displayPhone}</span>
@@ -182,8 +183,8 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
             </div>
 
             {/* Other Practice Areas */}
-            <div className="bg-ivory-50 border border-charcoal-200/90 rounded-2xl p-6 shadow-sm space-y-4">
-              <h4 className="font-serif text-base font-bold text-navy-900">
+            <div className="glass-panel rounded-3xl p-6 shadow-md space-y-4 relative overflow-hidden">
+              <h4 className="font-serif text-base font-bold text-navy-950">
                 Other Practice Areas
               </h4>
               <ul className="space-y-2 text-xs">
@@ -191,9 +192,9 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
                   <li key={other.id}>
                     <Link
                       href={`/practice-areas/${other.slug}`}
-                      className="flex items-center justify-between p-2 rounded hover:bg-ivory-200 text-charcoal-800 hover:text-navy-900 transition-colors"
+                      className="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/90 text-charcoal-800 hover:text-navy-950 transition-all"
                     >
-                      <span className="font-medium">{other.title}</span>
+                      <span className="font-semibold">{other.title}</span>
                       <ArrowRight className="w-3 h-3 text-gold-600" />
                     </Link>
                   </li>

@@ -47,24 +47,24 @@ export default function ContactPage() {
           {/* Left Column: Chamber Details & Working Hours */}
           <div className="lg:col-span-5 space-y-6">
             {/* Office & Chamber Addresses */}
-            <div className="bg-ivory-50 border border-charcoal-200/90 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 relative overflow-hidden">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-gold-600 block mb-1">
+                <span className="text-xs font-bold uppercase tracking-widest text-gold-700 block mb-1">
                   Chamber Address
                 </span>
-                <h2 className="font-serif text-xl font-bold text-navy-900">
+                <h2 className="font-serif text-xl font-bold text-navy-950">
                   {siteConfig.contact.officeAddress.title}
                 </h2>
               </div>
 
               <div className="space-y-4 text-xs sm:text-sm text-charcoal-800">
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/60 backdrop-blur-md border border-white/80 shadow-xs">
                   <MapPin className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold text-navy-900">
+                    <div className="font-bold text-navy-950 text-sm">
                       {siteConfig.contact.officeAddress.line1}
                     </div>
-                    <div className="text-charcoal-600">
+                    <div className="text-charcoal-600 mt-0.5">
                       {siteConfig.contact.officeAddress.line2}
                     </div>
                     <a
@@ -79,11 +79,11 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-charcoal-200/60">
-                  <span className="text-xs font-bold text-navy-900 block mb-1">
+                <div className="pt-2 border-t border-charcoal-200/50">
+                  <span className="text-xs font-bold text-navy-950 block mb-1">
                     {siteConfig.contact.chambersAddress.title}:
                   </span>
-                  <div className="text-charcoal-600 pl-8">
+                  <div className="text-charcoal-600 pl-2 font-medium">
                     {siteConfig.contact.chambersAddress.line1},{" "}
                     {siteConfig.contact.chambersAddress.line2}
                   </div>
@@ -91,34 +91,34 @@ export default function ContactPage() {
               </div>
 
               {/* Direct Communication Channels */}
-              <div className="pt-4 border-t border-charcoal-200/60 space-y-3 text-xs sm:text-sm">
-                <div className="flex items-center gap-3">
+              <div className="pt-4 border-t border-charcoal-200/50 space-y-3 text-xs sm:text-sm">
+                <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 backdrop-blur-sm border border-white/70">
                   <Phone className="w-5 h-5 text-gold-600 shrink-0" />
                   <div>
                     <span className="text-charcoal-500 text-xs block">Official Chamber Helpline:</span>
                     <a
                       href={`tel:${siteConfig.contact.mainPhone}`}
-                      className="font-semibold text-navy-900 hover:text-gold-600 transition-colors"
+                      className="font-bold text-navy-950 hover:text-gold-600 transition-colors"
                     >
                       {siteConfig.contact.displayPhone}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 backdrop-blur-sm border border-white/70">
                   <Mail className="w-5 h-5 text-gold-600 shrink-0" />
                   <div>
                     <span className="text-charcoal-500 text-xs block">Official Email Address:</span>
                     <a
                       href={`mailto:${siteConfig.contact.officialEmail}`}
-                      className="font-semibold text-navy-900 hover:text-gold-600 transition-colors"
+                      className="font-bold text-navy-950 hover:text-gold-600 transition-colors"
                     >
                       {siteConfig.contact.officialEmail}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 backdrop-blur-sm border border-white/70">
                   <MessageSquare className="w-5 h-5 text-gold-600 shrink-0" />
                   <div>
                     <span className="text-charcoal-500 text-xs block">WhatsApp Direct Link:</span>
@@ -126,7 +126,7 @@ export default function ContactPage() {
                       href={`https://wa.me/${siteConfig.contact.whatsappNumber}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-semibold text-navy-900 hover:text-gold-600 transition-colors"
+                      className="font-bold text-navy-950 hover:text-gold-600 transition-colors"
                     >
                       Send Message on WhatsApp
                     </a>
@@ -136,7 +136,7 @@ export default function ContactPage() {
             </div>
 
             {/* Chamber Working Hours */}
-            <div className="bg-navy-900 text-ivory-100 rounded-2xl p-6 sm:p-8 border border-gold-500/30 space-y-4">
+            <div className="glass-dark text-ivory-100 rounded-3xl p-6 sm:p-8 space-y-4 relative overflow-hidden">
               <div className="flex items-center gap-2 text-gold-400 font-semibold text-xs uppercase tracking-wider">
                 <Clock className="w-4 h-4" />
                 <span>Office & Chamber Hours</span>
@@ -148,7 +148,7 @@ export default function ContactPage() {
                 {siteConfig.contact.hours.map((h, i) => (
                   <div
                     key={i}
-                    className="flex items-center justify-between py-1.5 border-b border-navy-800 last:border-none"
+                    className="flex items-center justify-between py-2 border-b border-navy-800/80 last:border-none"
                   >
                     <span className="text-charcoal-300 font-medium">{h.days}:</span>
                     <span className="text-gold-400 font-semibold">{h.timing}</span>
@@ -163,12 +163,12 @@ export default function ContactPage() {
 
           {/* Right Column: Interactive Consultation Enquiry Form */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="bg-ivory-50 border border-charcoal-200/90 rounded-2xl p-6 sm:p-10 shadow-sm space-y-6">
+            <div className="glass-panel rounded-3xl p-6 sm:p-10 shadow-xl space-y-6 relative overflow-hidden">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-gold-600 block mb-1">
+                <span className="text-xs font-bold uppercase tracking-widest text-gold-700 block mb-1">
                   Online Consultation Form
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-900">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-950">
                   Request a Consultation
                 </h2>
                 <p className="text-xs sm:text-sm text-charcoal-600 mt-1 leading-relaxed">
@@ -182,10 +182,10 @@ export default function ContactPage() {
             </div>
 
             {/* Evidence Act Privilege Notice */}
-            <div className="p-5 rounded-xl bg-ivory-200/80 border border-gold-500/30 text-xs text-charcoal-700 leading-relaxed flex items-start gap-3">
+            <div className="p-5 rounded-2xl bg-white/70 backdrop-blur-md border border-gold-500/40 text-xs text-charcoal-700 leading-relaxed flex items-start gap-3 shadow-xs">
               <ShieldCheck className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-navy-900">Statutory Professional Privilege: </strong>
+                <strong className="text-navy-950">Statutory Professional Privilege: </strong>
                 All factual disclosures submitted through this form are protected under Section 126
                 of the Indian Evidence Act. Please do not submit confidential financial pins, bank
                 credentials, or OTPs.
@@ -197,7 +197,7 @@ export default function ContactPage() {
 
       {/* Google Maps Embed Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-ivory-50 border border-charcoal-200 rounded-2xl p-6 shadow-sm space-y-4">
+        <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-xl space-y-4 relative overflow-hidden">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <div>
               <h3 className="font-serif text-lg font-bold text-navy-900">

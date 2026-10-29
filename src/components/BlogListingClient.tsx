@@ -34,22 +34,22 @@ export function BlogListingClient({ articles }: BlogListingClientProps) {
   return (
     <div className="space-y-8">
       {/* Controls Bar: Language Toggle, Category Filter, Search */}
-      <div className="bg-ivory-50 border border-charcoal-200/90 rounded-2xl p-5 shadow-sm space-y-4">
+      <div className="glass-panel-gold rounded-3xl p-6 shadow-lg space-y-4 relative overflow-hidden">
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           {/* Language Filter */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-charcoal-600 uppercase tracking-wider flex items-center gap-1.5">
+            <span className="text-xs font-bold text-navy-950 uppercase tracking-wider flex items-center gap-1.5">
               <Languages className="w-4 h-4 text-gold-600" />
               <span>Language:</span>
             </span>
-            <div className="inline-flex rounded-lg bg-ivory-200 p-1 border border-charcoal-200/60">
+            <div className="inline-flex rounded-full bg-white/70 backdrop-blur-md p-1 border border-charcoal-200/50 shadow-xs">
               <button
                 type="button"
                 onClick={() => setSelectedLanguage("all")}
-                className={`px-3 py-1 rounded text-xs font-semibold transition-all ${
+                className={`px-3.5 py-1 rounded-full text-xs font-semibold transition-all ${
                   selectedLanguage === "all"
-                    ? "bg-navy-900 text-ivory-50 shadow-sm"
-                    : "text-charcoal-700 hover:text-navy-900"
+                    ? "bg-navy-900 text-ivory-50 shadow-xs"
+                    : "text-charcoal-700 hover:text-navy-950"
                 }`}
               >
                 All Articles
@@ -57,10 +57,10 @@ export function BlogListingClient({ articles }: BlogListingClientProps) {
               <button
                 type="button"
                 onClick={() => setSelectedLanguage("en")}
-                className={`px-3 py-1 rounded text-xs font-semibold transition-all ${
+                className={`px-3.5 py-1 rounded-full text-xs font-semibold transition-all ${
                   selectedLanguage === "en"
-                    ? "bg-navy-900 text-ivory-50 shadow-sm"
-                    : "text-charcoal-700 hover:text-navy-900"
+                    ? "bg-navy-900 text-ivory-50 shadow-xs"
+                    : "text-charcoal-700 hover:text-navy-950"
                 }`}
               >
                 English
@@ -68,10 +68,10 @@ export function BlogListingClient({ articles }: BlogListingClientProps) {
               <button
                 type="button"
                 onClick={() => setSelectedLanguage("hi")}
-                className={`px-3 py-1 rounded text-xs font-semibold transition-all ${
+                className={`px-3.5 py-1 rounded-full text-xs font-semibold transition-all ${
                   selectedLanguage === "hi"
-                    ? "bg-navy-900 text-ivory-50 shadow-sm"
-                    : "text-charcoal-700 hover:text-navy-900"
+                    ? "bg-navy-900 text-ivory-50 shadow-xs"
+                    : "text-charcoal-700 hover:text-navy-950"
                 }`}
               >
                 हिन्दी (Hindi)
@@ -81,27 +81,27 @@ export function BlogListingClient({ articles }: BlogListingClientProps) {
 
           {/* Search Box */}
           <div className="relative flex-1 max-w-sm">
-            <Search className="w-4 h-4 text-charcoal-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-charcoal-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search legal topics, Section 138, Bail..."
-              className="w-full pl-9 pr-4 py-2 rounded-lg border border-charcoal-200 text-xs text-charcoal-900 bg-white placeholder-charcoal-400 focus:outline-none focus:ring-2 focus:ring-gold-500"
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl glass-input text-xs text-charcoal-900 placeholder-charcoal-400 focus:outline-none"
             />
           </div>
         </div>
 
         {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-charcoal-200/60">
-          <span className="text-xs text-charcoal-500 font-medium">Category:</span>
+        <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-charcoal-200/50">
+          <span className="text-xs text-charcoal-500 font-semibold">Category:</span>
           <button
             type="button"
             onClick={() => setSelectedCategory("all")}
-            className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
               selectedCategory === "all"
-                ? "bg-gold-500 text-navy-950 font-bold"
-                : "bg-ivory-200/80 text-charcoal-700 hover:bg-ivory-300"
+                ? "bg-gold-500 text-navy-950 font-bold shadow-xs"
+                : "bg-white/60 text-charcoal-700 hover:bg-white border border-charcoal-200/50"
             }`}
           >
             All Categories
@@ -111,10 +111,10 @@ export function BlogListingClient({ articles }: BlogListingClientProps) {
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
                 selectedCategory === cat
-                  ? "bg-gold-500 text-navy-950 font-bold"
-                  : "bg-ivory-200/80 text-charcoal-700 hover:bg-ivory-300"
+                  ? "bg-gold-500 text-navy-950 font-bold shadow-xs"
+                  : "bg-white/60 text-charcoal-700 hover:bg-white border border-charcoal-200/50"
               }`}
             >
               {cat}
@@ -125,9 +125,9 @@ export function BlogListingClient({ articles }: BlogListingClientProps) {
 
       {/* Article Grid */}
       {filteredArticles.length === 0 ? (
-        <div className="text-center py-16 bg-ivory-50 rounded-2xl border border-charcoal-200/80 p-8">
+        <div className="text-center py-16 glass-panel rounded-3xl p-8">
           <BookOpen className="w-12 h-12 text-charcoal-400 mx-auto mb-3" />
-          <h3 className="font-serif text-lg font-bold text-navy-900">No articles matched</h3>
+          <h3 className="font-serif text-lg font-bold text-navy-950">No articles matched</h3>
           <p className="text-xs text-charcoal-600 mt-1">
             Try clearing your search query or switching filters to view all legal publications.
           </p>
@@ -137,7 +137,7 @@ export function BlogListingClient({ articles }: BlogListingClientProps) {
               setSelectedCategory("all");
               setSearchQuery("");
             }}
-            className="mt-4 px-4 py-2 bg-navy-900 text-ivory-50 rounded text-xs font-medium"
+            className="mt-4 px-4 py-2 bg-navy-900 text-ivory-50 rounded-xl text-xs font-semibold"
           >
             Reset Filters
           </button>
@@ -147,7 +147,7 @@ export function BlogListingClient({ articles }: BlogListingClientProps) {
           {filteredArticles.map((article) => (
             <article
               key={article.slug}
-              className="bg-ivory-50 border border-charcoal-200/80 hover:border-gold-500/60 rounded-xl p-6 transition-all duration-200 hover:shadow-md flex flex-col justify-between"
+              className="glass-card-interactive rounded-2xl p-6 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
