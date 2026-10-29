@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 import { ContactForm } from "@/components/ContactForm";
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
+import { ParallaxFloatingWatermark } from "@/components/animations/ParallaxFloatingWatermark";
 
 export const metadata: Metadata = {
   title: "Contact & Chambers | Office Address & Consultation Enquiry",
@@ -42,12 +44,18 @@ export default function ContactPage() {
       </section>
 
       {/* Main Grid: Contact Details & Form */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Parallax Floating Legal Scales Watermark */}
+        <div className="absolute right-0 top-1/3 pointer-events-none overflow-hidden" aria-hidden="true">
+          <ParallaxFloatingWatermark icon="scale" speed={-0.12} size={450} className="opacity-10" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
           {/* Left Column: Chamber Details & Working Hours */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Office & Chamber Addresses */}
-            <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 relative overflow-hidden">
+            <ScrollReveal animation="fade-right">
+              {/* Office & Chamber Addresses */}
+              <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 relative overflow-hidden">
               <div>
                 <span className="text-xs font-bold uppercase tracking-widest text-gold-700 block mb-1">
                   Chamber Address
@@ -159,45 +167,49 @@ export default function ContactPage() {
                 Prior appointment is strictly requested to avoid delays during active court hours.
               </p>
             </div>
+            </ScrollReveal>
           </div>
 
           {/* Right Column: Interactive Consultation Enquiry Form */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="glass-panel rounded-3xl p-6 sm:p-10 shadow-xl space-y-6 relative overflow-hidden">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-gold-700 block mb-1">
-                  Online Consultation Form
-                </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-950">
-                  Request a Consultation
-                </h2>
-                <p className="text-xs sm:text-sm text-charcoal-600 mt-1 leading-relaxed">
-                  Provide an overview of your legal query. Our chamber assistant will review the
-                  request and confirm an appointment slot.
-                </p>
+            <ScrollReveal animation="fade-left">
+              <div className="glass-panel rounded-3xl p-6 sm:p-10 shadow-xl space-y-6 relative overflow-hidden">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-gold-700 block mb-1">
+                    Online Consultation Form
+                  </span>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-950">
+                    Request a Consultation
+                  </h2>
+                  <p className="text-xs sm:text-sm text-charcoal-600 mt-1 leading-relaxed">
+                    Provide an overview of your legal query. Our chamber assistant will review the
+                    request and confirm an appointment slot.
+                  </p>
+                </div>
+
+                {/* Server Action Form Component */}
+                <ContactForm />
               </div>
 
-              {/* Server Action Form Component */}
-              <ContactForm />
-            </div>
-
-            {/* Evidence Act Privilege Notice */}
-            <div className="p-5 rounded-2xl bg-white/70 backdrop-blur-md border border-gold-500/40 text-xs text-charcoal-700 leading-relaxed flex items-start gap-3 shadow-xs">
-              <ShieldCheck className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-navy-950">Statutory Professional Privilege: </strong>
-                All factual disclosures submitted through this form are protected under Section 126
-                of the Indian Evidence Act. Please do not submit confidential financial pins, bank
-                credentials, or OTPs.
+              {/* Evidence Act Privilege Notice */}
+              <div className="p-5 rounded-2xl bg-white/70 backdrop-blur-md border border-gold-500/40 text-xs text-charcoal-700 leading-relaxed flex items-start gap-3 shadow-xs mt-6">
+                <ShieldCheck className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-navy-950">Statutory Professional Privilege: </strong>
+                  All factual disclosures submitted through this form are protected under Section 126
+                  of the Indian Evidence Act. Please do not submit confidential financial pins, bank
+                  credentials, or OTPs.
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* Google Maps Embed Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-xl space-y-4 relative overflow-hidden">
+        <ScrollReveal animation="fade-up">
+          <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 shadow-xl space-y-4 relative overflow-hidden">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <div>
               <h3 className="font-serif text-lg font-bold text-navy-900">
@@ -232,7 +244,8 @@ export default function ContactPage() {
             />
           </div>
         </div>
-      </section>
-    </div>
-  );
+      </ScrollReveal>
+    </section>
+  </div>
+);
 }

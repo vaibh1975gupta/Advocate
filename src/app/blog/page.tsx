@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { BookOpen, ShieldCheck } from "lucide-react";
 import { articles } from "@/data/articles";
 import { BlogListingClient } from "@/components/BlogListingClient";
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
+import { ParallaxFloatingWatermark } from "@/components/animations/ParallaxFloatingWatermark";
 
 export const metadata: Metadata = {
   title: "Legal Information & Articles | Procedures & Rights",
@@ -33,8 +35,15 @@ export default function BlogPage() {
       </section>
 
       {/* Main Listing Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <BlogListingClient articles={articles} />
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Parallax Floating Legal Book Watermark */}
+        <div className="absolute right-0 top-1/3 pointer-events-none overflow-hidden" aria-hidden="true">
+          <ParallaxFloatingWatermark icon="book" speed={-0.12} size={480} className="opacity-10" />
+        </div>
+
+        <ScrollReveal animation="fade-up">
+          <BlogListingClient articles={articles} />
+        </ScrollReveal>
       </section>
 
       {/* Educational Disclaimer */}

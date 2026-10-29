@@ -8,6 +8,8 @@ import { Footer } from "@/components/Footer";
 import { BciDisclaimerModal } from "@/components/BciDisclaimerModal";
 import { JsonLd } from "@/components/JsonLd";
 import { MouseSpotlight } from "@/components/animations/MouseSpotlight";
+import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
+import { ScrollToTop } from "@/components/animations/ScrollToTop";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -83,12 +85,14 @@ export default function RootLayout({
           <div className="absolute top-1/2 left-10 w-[500px] h-[500px] bg-navy-800/[0.05] rounded-full blur-[150px]" />
           <div className="absolute bottom-10 right-10 w-[600px] h-[600px] bg-gold-400/[0.07] rounded-full blur-[160px]" />
         </div>
+        <ScrollProgressBar />
         <MouseSpotlight />
         <JsonLd />
         <BciDisclaimerModal />
         <BciBanner />
         <Header />
         <main className="flex-grow relative z-10">{children}</main>
+        <ScrollToTop />
         <Footer />
       </body>
     </html>
