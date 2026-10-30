@@ -40,7 +40,6 @@ export function JsonLd() {
     priceRange: "Professional consultation as per advocate-client agreement",
     knowsAbout: [
       "Criminal Law",
-      "Property Law and Land Disputes",
       "Family Law",
       "Section 138 Negotiable Instruments Act",
       "Legal Documentation and Advisory",

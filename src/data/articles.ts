@@ -2,7 +2,7 @@ export interface Article {
   slug: string;
   title: string;
   excerpt: string;
-  category: "Criminal Law" | "Property Law" | "Family Law" | "Negotiable Instruments" | "Legal Documentation";
+  category: "Criminal Law" | "Family Law" | "Negotiable Instruments" | "Legal Documentation";
   language: "en" | "hi";
   languageLabel: "English" | "हिन्दी";
   publishedDate: string;
@@ -238,7 +238,7 @@ export const articles: Article[] = [
     title: "Essential Checklist for Property Purchase & Title Verification in India",
     excerpt:
       "A legal roadmap for homebuyers and land purchasers to ensure clear title, verify encumbrances, review revenue records, and prevent costly land disputes.",
-    category: "Property Law",
+    category: "Legal Documentation",
     language: "en",
     languageLabel: "English",
     publishedDate: "2025-02-28",
@@ -281,7 +281,7 @@ export const articles: Article[] = [
     title: "जमीन या मकान खरीदते समय जरूरी कानूनी जांच और सावधानियां",
     excerpt:
       "अचल संपत्ति की खरीद में धोखाधड़ी से बचने के लिए मूल दस्तावेजों की जांच, खतौनी-खसरा का मिलान, भारमुक्त प्रमाण पत्र और रजिस्ट्री के महत्वपूर्ण नियम।",
-    category: "Property Law",
+    category: "Legal Documentation",
     language: "hi",
     languageLabel: "हिन्दी",
     publishedDate: "2025-03-05",

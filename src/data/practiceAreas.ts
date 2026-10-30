@@ -39,34 +39,6 @@ export const practiceAreas: PracticeArea[] = [
       "All representation is subject to legal merits and statutory provisions. Indian legal ethics strictly prohibit guarantees of bail, acquittal, or specific judicial outcomes.",
   },
   {
-    id: "property-land-disputes",
-    slug: "property-land-disputes",
-    title: "Property & Land Disputes",
-    shortDescription:
-      "Legal counsel and litigation regarding immovable property, title verification, partition, tenancy, and revenue disputes.",
-    iconName: "Building2",
-    keyStatutes: [
-      "Transfer of Property Act, 1882",
-      "Specific Relief Act, 1963",
-      "Registration Act, 1908 & Indian Stamp Act",
-      "State Land Revenue Codes & Tenancy Acts",
-      "Real Estate (Regulation and Development) Act (RERA)",
-    ],
-    scopeOfWork: [
-      "Partition suits among co-owners and legal heirs",
-      "Injunction petitions to restrain unlawful interference or alienation",
-      "Declaration of title and recovery of possession proceedings",
-      "Revenue court litigation before Tehsildars, SDMs, and Revenue Boards",
-      "Tenancy and lease dispute litigation, eviction petitions",
-      "Title verification, encumbrance scrutiny, and legal search reports",
-      "Matters concerning agricultural land ceiling and mutation corrections",
-    ],
-    procedureOverview:
-      "Immovable property disputes demand thorough investigation of revenue records (Jamabandi, Khasra, Khatoni), registered instruments, chain of title, and boundary identification. We emphasize pre-litigation documentation review to determine the lawful standing and remedies available under property and revenue laws.",
-    importantNote:
-      "Property litigation depends heavily on authentic documentary evidence and revenue records. General civil litigation outside specific land/property titles is excluded from this practice scope.",
-  },
-  {
     id: "family-law-matters",
     slug: "family-law-matters",
     title: "Family Law Matters",

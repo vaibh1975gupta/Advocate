@@ -167,7 +167,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Having represented clients across thousands of court proceedings, bail applications,
-                  criminal trials, land boundary and partition disputes, family reconciliations, and
+                  criminal trials, contested hearings, family reconciliations, and
                   negotiable instruments litigation, Advocate Gupta has built a reputation centered on
                   painstaking evidentiary scrutiny, statutory precision, and dignified advocacy.
                 </p>
@@ -215,7 +215,7 @@ export default function AboutPage() {
                 <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed">
                   Advocate Anil Kumar Gupta exclusively accepts briefs within designated practice
                   categories. In compliance with strict professional directives, general civil
-                  litigation outside specific land/property titles is excluded:
+                  litigation is excluded:
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">

@@ -17,7 +17,7 @@ export const siteConfig = {
     experienceStatement:
       "Over 25 years of dedicated courtroom advocacy, counsel, and representation in the District & Sessions Court.",
     shortBio:
-      "Advocate Anil Kumar Gupta brings over 25 years of courtroom experience and legal counsel, specializing in Criminal Matters, Property & Land Disputes, Family Law, Section 138 Negotiable Instruments (Cheque Dishonour), and Legal Documentation. His practice is characterized by rigorous procedural compliance, candid merits assessment, and strict professional confidentiality.",
+      "Advocate Anil Kumar Gupta brings over 25 years of courtroom experience and legal counsel, specializing in Criminal Matters, Family Law, Section 138 Negotiable Instruments (Cheque Dishonour), and Legal Documentation. His practice is characterized by rigorous procedural compliance, candid merits assessment, and strict professional confidentiality.",
     languages: ["English", "Hindi"],
     portraitImage: "/images/advocate-portrait.jpg",
     portraitAlt: "Portrait of Advocate Anil Kumar Gupta in advocate chamber robes",
@@ -121,12 +121,11 @@ export const siteConfig = {
     siteUrl: "https://advocateanilkumar.in",
     defaultTitle: "Advocate Anil Kumar Gupta | District & Sessions Court (25+ Years Experience)",
     defaultDescription:
-      "Official professional website of Advocate Anil Kumar Gupta with over 25 years of legal experience in the District & Sessions Court. Practice areas: Criminal Law, Land & Property Disputes, Family Matters, NI Act Cheque Dishonour, and Legal Documentation.",
+      "Official professional website of Advocate Anil Kumar Gupta with over 25 years of legal experience in the District & Sessions Court. Practice areas: Criminal Law, Family Matters, NI Act Cheque Dishonour, and Legal Documentation.",
     keywords: [
       "Advocate Anil Kumar Gupta",
       "District and Sessions Court Advocate",
       "Criminal Lawyer near SSP Office",
-      "Property Dispute Advocate",
       "Section 138 NI Act Cheque Bounce Lawyer",
       "Family Court Advocate",
       "Legal Documentation Advocate",

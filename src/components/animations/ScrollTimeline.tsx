@@ -33,12 +33,12 @@ const milestones: Milestone[] = [
   },
   {
     year: "2014",
-    badge: "Land & Property Practice",
-    title: "Title Scrutiny & Agricultural Land Disputes",
+    badge: "Family & Matrimonial Law",
+    title: "Family Dispute Resolution & Maintenance Proceedings",
     description:
-      "Expanded strategic advisory to complex landed estates, ancestral partitions, revenue record verifications, mutation disputes, and injunction applications.",
+      "Dedicated representation in matrimonial reconciliation, mutual consent divorce petitions, maintenance claims under Section 125 CrPC / BNSS, and guardianship matters.",
     icon: <FileCheck className="w-5 h-5 text-gold-400" />,
-    highlights: ["Revenue records verification", "Partition & boundary suits", "Sale deed drafting"],
+    highlights: ["Family court counsel", "Maintenance & custody", "Mediation & settlement"],
   },
   {
     year: "2019",

@@ -65,7 +65,6 @@ export async function submitEnquiryAction(
   // Practice area validation
   const allowedPracticeAreas = [
     "criminal-matters",
-    "property-land-disputes",
     "family-law-matters",
     "cheque-dishonour-matters",
     "documentation-legal-advice",

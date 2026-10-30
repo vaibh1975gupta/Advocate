@@ -184,8 +184,8 @@ export default function HomePage() {
                         Years of Legal Practice
                       </span>
                       <p className="text-xs text-charcoal-200 leading-relaxed pt-1">
-                        Representing clients in complex criminal defenses, land and property titles, family
-                        disputes, cheque dishonour litigations, and commercial documentation.
+                        Representing clients in complex criminal defenses, family law matters, cheque dishonour
+                        litigations, and commercial legal documentation.
                       </p>
                       <div className="pt-3">
                         <Link
@@ -227,7 +227,7 @@ export default function HomePage() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
           {practiceAreas.map((area, idx) => (
             <ScrollReveal key={area.id} animation="fade-up" delay={idx * 75}>
               <TiltCard maxTilt={9} className="h-full">
