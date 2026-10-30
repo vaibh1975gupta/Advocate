@@ -102,6 +102,7 @@ export async function submitEnquiryAction(
 
   // Log confirmed submission on server
   console.log(`[ENQUIRY_RECEIVED] Reference: ${referenceId}`);
+  console.log(`Destination Inbox: anilgupta19755@gmail.com`);
   console.log(`Client: ${fullName} | Phone: ${phone} | Email: ${email}`);
   console.log(`Area: ${practiceArea} | Preferred Time: ${preferredTime}`);
   console.log(`Summary: ${message.slice(0, 100)}...`);

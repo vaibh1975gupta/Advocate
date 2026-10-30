@@ -15,6 +15,7 @@ import {
   MessageSquare,
   ArrowRight,
   Calendar,
+  Mail,
 } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 import { practiceAreas } from "@/data/practiceAreas";
@@ -406,6 +407,14 @@ export function Header() {
                       <MessageSquare className="w-4 h-4 text-emerald-400" />
                       <span>WhatsApp Chamber Desk</span>
                     </a>
+
+                    <a
+                      href={`mailto:${siteConfig.contact.officialEmail}?subject=Chamber%20Consultation%20Enquiry`}
+                      className="flex items-center gap-2.5 p-2 rounded-xl bg-navy-900/70 hover:bg-gold-500 hover:text-navy-950 text-gold-300 hover:text-navy-950 transition-colors font-medium border border-gold-500/30 text-[11px] truncate"
+                    >
+                      <Mail className="w-4 h-4 text-gold-400 shrink-0" />
+                      <span className="truncate">{siteConfig.contact.officialEmail}</span>
+                    </a>
                   </div>
 
                   <div className="pt-2 border-t border-navy-800 text-[11px] text-charcoal-300 space-y-1">
@@ -579,6 +588,14 @@ export function Header() {
                 <span>WhatsApp</span>
               </a>
             </div>
+
+            <a
+              href={`mailto:${siteConfig.contact.officialEmail}?subject=Chamber%20Consultation%20Enquiry`}
+              className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white/80 text-navy-950 font-medium text-xs border border-gold-500/30"
+            >
+              <Mail className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+              <span className="truncate">{siteConfig.contact.officialEmail}</span>
+            </a>
 
             <Link
               href="/contact"

@@ -64,8 +64,8 @@ export const siteConfig = {
     displayPhone: "+91 79837 67392",
     secondaryPhone: "+91 79837 67392",
     whatsappNumber: "917983767392",
-    officialEmail: "chamber@advocateanilkumar.in",
-    consultationEmail: "consultation@advocateanilkumar.in",
+    officialEmail: "anilgupta19755@gmail.com",
+    consultationEmail: "anilgupta19755@gmail.com",
 
     // Physical Office Address
     officeAddress: {

@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useActionState } from "react";
-import { Send, CheckCircle2, AlertCircle, ShieldAlert, Loader2, RefreshCw } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, ShieldAlert, Loader2, RefreshCw, Mail } from "lucide-react";
 import { submitEnquiryAction, ContactFormState } from "@/app/actions/contact";
 import { practiceAreas } from "@/data/practiceAreas";
 import { ConfettiCelebration } from "@/components/animations/ConfettiCelebration";
+import { siteConfig } from "@/config/siteConfig";
 
 const initialState: ContactFormState = {
   success: false,
@@ -47,7 +48,14 @@ export function ContactForm() {
           <p>
             Please note down your reference number. Our chamber assistant will review the matter
             against our court calendar and reach out to you via your provided phone number or email.
-            No advocate-client privilege is formed until a formal vakalatnama or engagement is
+            For direct email follow-up, you can write to{" "}
+            <a
+              href={`mailto:${siteConfig.contact.officialEmail}`}
+              className="text-gold-700 hover:text-gold-900 font-bold underline underline-offset-2"
+            >
+              {siteConfig.contact.officialEmail}
+            </a>
+            . No advocate-client privilege is formed until a formal vakalatnama or engagement is
             executed.
           </p>
         </div>
@@ -66,6 +74,34 @@ export function ContactForm() {
 
   return (
     <form action={formAction} className="space-y-6">
+      {/* Direct Email Consultation Option */}
+      <div className="p-3.5 sm:p-4 rounded-2xl bg-white/80 backdrop-blur-md border border-gold-500/40 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-navy-900/90 text-gold-400 flex items-center justify-center shrink-0 border border-gold-500/30">
+            <Mail className="w-4 h-4 text-gold-400" />
+          </div>
+          <div>
+            <span className="text-[11px] uppercase tracking-wider text-charcoal-500 font-semibold block">
+              Official Email for Direct Enquiry:
+            </span>
+            <a
+              href={`mailto:${siteConfig.contact.officialEmail}?subject=Legal%20Consultation%20Enquiry%20-%20Advocate%20Anil%20Kumar%20Gupta`}
+              className="text-xs sm:text-sm font-bold text-navy-950 hover:text-gold-700 transition-colors underline underline-offset-2 break-all"
+            >
+              {siteConfig.contact.officialEmail}
+            </a>
+          </div>
+        </div>
+
+        <a
+          href={`mailto:${siteConfig.contact.officialEmail}?subject=Legal%20Consultation%20Enquiry%20-%20Advocate%20Anil%20Kumar%20Gupta`}
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold transition-all shadow-xs shrink-0 self-stretch sm:self-auto justify-center"
+        >
+          <Mail className="w-3.5 h-3.5" />
+          <span>Email Chamber</span>
+        </a>
+      </div>
+
       {/* Honeypot field for bot spam trap */}
       <div className="hidden" aria-hidden="true">
         <label htmlFor="fax_number">Fax Number</label>
