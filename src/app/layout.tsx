@@ -78,7 +78,7 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}
     >
-      <body className="min-h-screen flex flex-col bg-ivory-100 text-charcoal-900 antialiased selection:bg-gold-500/20 selection:text-navy-950 relative overflow-x-hidden">
+      <body className="min-h-screen flex flex-col bg-ivory-100 text-charcoal-900 antialiased selection:bg-gold-500/20 selection:text-navy-950 relative overflow-x-clip">
         {/* Ambient Refraction Glows for Glassmorphism */}
         <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
           <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gold-500/[0.08] rounded-full blur-[140px]" />
