@@ -118,7 +118,7 @@ export const siteConfig = {
   // SEO & Metadata Configuration
   seo: {
     siteName: "Advocate Anil Kumar Gupta | District & Sessions Court",
-    siteUrl: "https://advocateanilkumar.in",
+    siteUrl: "https://advocateanilkumargupta.in",
     defaultTitle: "Advocate Anil Kumar Gupta | District & Sessions Court (25+ Years Experience)",
     defaultDescription:
       "Official professional website of Advocate Anil Kumar Gupta with over 25 years of legal experience in the District & Sessions Court. Practice areas: Criminal Law, Family Matters, NI Act Cheque Dishonour, and Legal Documentation.",
