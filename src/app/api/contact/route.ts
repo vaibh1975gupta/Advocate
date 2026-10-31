@@ -20,6 +20,8 @@ export async function POST(request: NextRequest) {
         message: body.message || "",
         disclaimerConsent: Boolean(body.disclaimerConsent),
         botField: body.fax_number || body.botField || "",
+        emailSentDirectly: Boolean(body.emailSentDirectly),
+        providedReferenceId: body.referenceId || undefined,
       };
     } else {
       const formData = await request.formData();
@@ -34,6 +36,8 @@ export async function POST(request: NextRequest) {
           formData.get("disclaimerConsent") === "on" ||
           formData.get("disclaimerConsent") === "true",
         botField: formData.get("fax_number")?.toString() || "",
+        emailSentDirectly: formData.get("emailSentDirectly") === "true",
+        providedReferenceId: formData.get("referenceId")?.toString() || undefined,
       };
     }
 

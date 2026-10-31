@@ -7,6 +7,8 @@ export interface ContactInput {
   message: string;
   disclaimerConsent: boolean;
   botField?: string;
+  emailSentDirectly?: boolean;
+  providedReferenceId?: string;
 }
 
 export interface ContactFormState {
@@ -36,6 +38,8 @@ export async function validateAndSubmitEnquiry(
     message,
     disclaimerConsent,
     botField,
+    emailSentDirectly = false,
+    providedReferenceId,
   } = input;
 
   // Honeypot spam defense
@@ -109,10 +113,12 @@ export async function validateAndSubmitEnquiry(
     };
   }
 
-  // Generate verified Reference ID for tracking
-  const referenceId = `ADV-${new Date().getFullYear()}-${Math.floor(
-    100000 + Math.random() * 900000
-  )}`;
+  // Generate verified Reference ID for tracking (or reuse provided)
+  const referenceId =
+    providedReferenceId ||
+    `ADV-${new Date().getFullYear()}-${Math.floor(
+      100000 + Math.random() * 900000
+    )}`;
 
   const practiceAreaNames: Record<string, string> = {
     "criminal-matters": "Criminal Matters (Bail, Trial & Defense)",
@@ -136,36 +142,58 @@ export async function validateAndSubmitEnquiry(
   console.log(`Area: ${practiceAreaLabel} | Preferred Time: ${preferredTime}`);
   console.log(`Summary: ${trimmedMessage.slice(0, 100)}...`);
 
-  // Dispatch direct email notification to anilgupta19755@gmail.com
-  try {
-    const emailPayload = {
-      _subject: `New Legal Enquiry [Ref: ${referenceId}] - ${trimmedName}`,
-      _replyto: email,
-      _template: "table",
-      "Reference ID": referenceId,
-      "Client Name": trimmedName,
-      "Contact Number": phone,
-      "Client Email": email,
-      "Practice Area": practiceAreaLabel,
-      "Preferred Time to Call": preferredTime,
-      "Legal Query Outline": trimmedMessage,
-      "Submission Time (IST)": submissionTimestamp,
-    };
-
-    const res = await fetch("https://formsubmit.co/ajax/anilgupta19755@gmail.com", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Referer: "https://www.advocateanilkumargupta.in",
-      },
-      body: JSON.stringify(emailPayload),
+  if (emailSentDirectly) {
+    console.log(`[EMAIL_DISPATCH_RESULT]`, {
+      success: "true",
+      method: "client_direct_delivery",
+      destination: "anilgupta19755@gmail.com",
     });
+  } else {
+    // Server-side dispatch to FormSubmit with complete browser headers
+    try {
+      const emailPayload = {
+        _subject: `New Legal Enquiry [Ref: ${referenceId}] - ${trimmedName}`,
+        _replyto: email,
+        _template: "table",
+        "Reference ID": referenceId,
+        "Client Name": trimmedName,
+        "Contact Number": phone,
+        "Client Email": email,
+        "Practice Area": practiceAreaLabel,
+        "Preferred Time to Call": preferredTime,
+        "Legal Query Outline": trimmedMessage,
+        "Submission Time (IST)": submissionTimestamp,
+      };
 
-    const data = await res.json().catch(() => null);
-    console.log(`[EMAIL_DISPATCH_RESULT]`, data);
-  } catch (err) {
-    console.error(`[EMAIL_DISPATCH_ERROR] Failed to send email via FormSubmit:`, err);
+      const res = await fetch(
+        "https://formsubmit.co/ajax/anilgupta19755@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Referer: "https://www.advocateanilkumargupta.in/contact",
+            "User-Agent":
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+          },
+          body: JSON.stringify(emailPayload),
+        }
+      );
+
+      const text = await res.text();
+      let data = null;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = { status: res.status, responsePreview: text.slice(0, 150) };
+      }
+      console.log(`[EMAIL_DISPATCH_RESULT]`, data);
+    } catch (err) {
+      console.error(
+        `[EMAIL_DISPATCH_ERROR] Failed to send email via FormSubmit:`,
+        err
+      );
+    }
   }
 
   return {
