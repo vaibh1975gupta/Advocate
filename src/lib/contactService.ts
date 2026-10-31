@@ -13,6 +13,9 @@ export interface ContactFormState {
   success: boolean;
   message: string;
   referenceId?: string;
+  providerStatus?: number;
+  providerMessage?: string;
+  providerError?: string;
   errors?: {
     fullName?: string[];
     phone?: string[];
