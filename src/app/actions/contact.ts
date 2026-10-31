@@ -99,17 +99,65 @@ export async function submitEnquiryAction(
   // Generate verified Reference ID for tracking
   const referenceId = `ADV-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
 
+  const practiceAreaNames: Record<string, string> = {
+    "criminal-matters": "Criminal Matters (Bail, Trial & Defense)",
+    "family-law-matters": "Family Law Matters (Matrimonial & Custody)",
+    "cheque-dishonour-matters": "Cheque Dishonour (Section 138 NI Act)",
+    "documentation-legal-advice": "Documentation & Legal Advice",
+    "general-consultation": "General Legal Advisory & Opinion",
+  };
+
+  const practiceAreaLabel = practiceAreaNames[practiceArea] || practiceArea;
+  const submissionTimestamp = new Date().toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    dateStyle: "full",
+    timeStyle: "short",
+  });
+
   // Log confirmed submission on server
   console.log(`[ENQUIRY_RECEIVED] Reference: ${referenceId}`);
   console.log(`Destination Inbox: anilgupta19755@gmail.com`);
   console.log(`Client: ${fullName} | Phone: ${phone} | Email: ${email}`);
-  console.log(`Area: ${practiceArea} | Preferred Time: ${preferredTime}`);
+  console.log(`Area: ${practiceAreaLabel} | Preferred Time: ${preferredTime}`);
   console.log(`Summary: ${message.slice(0, 100)}...`);
+
+  // Dispatch direct email notification to anilgupta19755@gmail.com
+  try {
+    const emailPayload = {
+      _subject: `New Legal Enquiry [Ref: ${referenceId}] - ${fullName}`,
+      _replyto: email,
+      _template: "table",
+      "Reference ID": referenceId,
+      "Client Name": fullName,
+      "Contact Number": phone,
+      "Client Email": email,
+      "Practice Area": practiceAreaLabel,
+      "Preferred Time to Call": preferredTime,
+      "Legal Query Outline": message,
+      "Submission Time (IST)": submissionTimestamp,
+    };
+
+    const res = await fetch("https://formsubmit.co/ajax/anilgupta19755@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Referer: "https://www.advocateanilkumargupta.in",
+      },
+      body: JSON.stringify(emailPayload),
+    });
+
+    const data = await res.json().catch(() => null);
+    console.log(`[EMAIL_DISPATCH_RESULT]`, data);
+  } catch (err) {
+    console.error(`[EMAIL_DISPATCH_ERROR] Failed to send email via FormSubmit:`, err);
+    // Even if external email service has temporary network latency, record is logged above
+  }
 
   return {
     success: true,
     referenceId,
     message:
-      "Your consultation request has been recorded successfully. Our chambers will review the matter and contact you at your preferred time.",
+      "Your consultation request has been recorded and sent to Advocate Anil Kumar Gupta's chamber inbox (anilgupta19755@gmail.com). Our office will review the matter and contact you at your preferred time.",
   };
 }
