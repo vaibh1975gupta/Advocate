@@ -193,6 +193,7 @@ export async function validateAndSubmitEnquiry(
           "Content-Type": "application/json",
           Accept: "application/json",
           Referer: "https://www.advocateanilkumargupta.in/contact",
+          Origin: "https://www.advocateanilkumargupta.in",
           "User-Agent":
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
         },
@@ -237,6 +238,8 @@ export async function validateAndSubmitEnquiry(
       return {
         success: false,
         referenceId,
+        providerStatus: res.status,
+        providerMessage: providerData?.message || responseText.slice(0, 100),
         message: `We were unable to confirm delivery of your inquiry to the chamber inbox at this moment (Ref: ${referenceId}). Please reach out directly by telephone at +91 79837 67392 or email anilgupta19755@gmail.com.`,
       };
     }
@@ -257,6 +260,7 @@ export async function validateAndSubmitEnquiry(
     return {
       success: false,
       referenceId,
+      providerError: err instanceof Error ? err.message : "Unknown network error",
       message: `A network connection error prevented email delivery (Ref: ${referenceId}). Please call our chambers directly at +91 79837 67392 or email anilgupta19755@gmail.com.`,
     };
   }
