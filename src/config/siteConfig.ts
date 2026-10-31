@@ -96,8 +96,9 @@ export const siteConfig = {
 
     // Google Maps Navigation link
     googleMapsEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112061.79978716303!2d77.10249019999999!3d28.6324294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b0000001%3A0x1d4d84a7e93945a5!2sDistrict%20and%20Sessions%20Court!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-    googleMapsDirectionsUrl: "https://maps.google.com/?q=Near+SSP+Office+District+and+Sessions+Court",
+      "https://maps.google.com/maps?q=28.3431614,79.4181326&hl=en&z=17&output=embed",
+    googleMapsDirectionsUrl:
+      "https://maps.google.com/maps?q=28.3431614%2C79.4181326&z=17&hl=en",
   },
 
   // Bar Council Compliance & Disclaimer Notice
