@@ -20,8 +20,6 @@ export async function POST(request: NextRequest) {
         message: body.message || "",
         disclaimerConsent: Boolean(body.disclaimerConsent),
         botField: body.fax_number || body.botField || "",
-        emailSentDirectly: Boolean(body.emailSentDirectly),
-        providedReferenceId: body.referenceId || undefined,
       };
     } else {
       const formData = await request.formData();
@@ -36,23 +34,28 @@ export async function POST(request: NextRequest) {
           formData.get("disclaimerConsent") === "on" ||
           formData.get("disclaimerConsent") === "true",
         botField: formData.get("fax_number")?.toString() || "",
-        emailSentDirectly: formData.get("emailSentDirectly") === "true",
-        providedReferenceId: formData.get("referenceId")?.toString() || undefined,
       };
     }
 
     const result = await validateAndSubmitEnquiry(input);
 
-    return NextResponse.json(result, {
-      status: result.success ? 200 : 422,
-    });
+    const httpStatus = result.success
+      ? 200
+      : result.errors
+      ? 422
+      : 502;
+
+    return NextResponse.json(result, { status: httpStatus });
   } catch (error) {
-    console.error("[API_CONTACT_ERROR]", error);
+    console.error(
+      "[API_CONTACT_CRITICAL_ERROR]",
+      error instanceof Error ? error.message : "Unknown error"
+    );
     return NextResponse.json(
       {
         success: false,
         message:
-          "An unexpected error occurred while processing your request. Please contact our chambers directly.",
+          "An unexpected server error occurred while processing your request. Please contact Advocate Anil Kumar Gupta directly at +91 79837 67392 or anilgupta19755@gmail.com.",
       },
       { status: 500 }
     );

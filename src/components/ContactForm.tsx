@@ -18,6 +18,8 @@ export function ContactForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (isPending) return;
+
     setIsPending(true);
     setState({ success: false, message: "" });
 
@@ -29,7 +31,6 @@ export function ContactForm() {
       const phone = formData.get("phone")?.toString().trim() || "";
       const email = formData.get("email")?.toString().trim() || "";
       const practiceArea = formData.get("practiceArea")?.toString().trim() || "";
-      const preferredTime = formData.get("preferredTime")?.toString().trim() || "Anytime";
       const message = formData.get("message")?.toString().trim() || "";
       const disclaimerConsent = formData.get("disclaimerConsent") === "on";
 
@@ -82,82 +83,29 @@ export function ContactForm() {
         return;
       }
 
-      const referenceId = `ADV-${new Date().getFullYear()}-${Math.floor(
-        100000 + Math.random() * 900000
-      )}`;
-
-      const practiceAreaNames: Record<string, string> = {
-        "criminal-matters": "Criminal Matters (Bail, Trial & Defense)",
-        "family-law-matters": "Family Law Matters (Matrimonial & Custody)",
-        "cheque-dishonour-matters": "Cheque Dishonour (Section 138 NI Act)",
-        "documentation-legal-advice": "Documentation & Legal Advice",
-        "general-consultation": "General Legal Advisory & Opinion",
-      };
-
-      const practiceAreaLabel = practiceAreaNames[practiceArea] || practiceArea;
-      const submissionTimestamp = new Date().toLocaleString("en-IN", {
-        timeZone: "Asia/Kolkata",
-        dateStyle: "full",
-        timeStyle: "short",
-      });
-
-      const emailPayload = {
-        _subject: `New Legal Enquiry [Ref: ${referenceId}] - ${fullName}`,
-        _replyto: email,
-        _template: "table",
-        "Reference ID": referenceId,
-        "Client Name": fullName,
-        "Contact Number": phone,
-        "Client Email": email,
-        "Practice Area": practiceAreaLabel,
-        "Preferred Time to Call": preferredTime,
-        "Legal Query Outline": message,
-        "Submission Time (IST)": submissionTimestamp,
-      };
-
-      let directDeliverySuccess = false;
-      try {
-        // Direct browser dispatch to FormSubmit (runs on client's ISP IP, guaranteed no Cloudflare datacenter blocks)
-        const fsRes = await fetch(
-          "https://formsubmit.co/ajax/anilgupta19755@gmail.com",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify(emailPayload),
-          }
-        );
-        const fsData = await fsRes.json().catch(() => null);
-        if (fsData && (fsData.success === "true" || fsData.success === true)) {
-          directDeliverySuccess = true;
-        }
-      } catch (err) {
-        console.warn("[CLIENT_DIRECT_DISPATCH_WARNING]", err);
-      }
-
-      // Also record submission in /api/contact for server logging & fallback delivery
-      formData.append("referenceId", referenceId);
-      formData.append("emailSentDirectly", directDeliverySuccess ? "true" : "false");
-
-      await fetch("/api/contact", {
+      // Submit only to the server-side API route /api/contact
+      const res = await fetch("/api/contact", {
         method: "POST",
         body: formData,
-      }).catch((err) => console.warn("[SERVER_AUDIT_LOG_WARNING]", err));
-
-      setState({
-        success: true,
-        referenceId,
-        message:
-          "Your consultation request has been recorded and sent to Advocate Anil Kumar Gupta's chamber inbox (anilgupta19755@gmail.com). Our office will review the matter and contact you at your preferred time.",
       });
+
+      const data: ContactFormState = await res.json().catch(() => null);
+
+      if (!data) {
+        setState({
+          success: false,
+          message:
+            "A server communication error occurred. Please contact Advocate Anil Kumar Gupta directly at +91 79837 67392 or anilgupta19755@gmail.com.",
+        });
+      } else {
+        setState(data);
+      }
     } catch (err) {
-      console.error("[FORM_SUBMISSION_ERROR]", err);
+      console.error("[CONTACT_SUBMISSION_ERROR]", err);
       setState({
         success: false,
         message:
-          "Failed to submit request due to a network connection issue. Please try again or write directly to anilgupta19755@gmail.com.",
+          "Unable to connect to the chamber server. Please check your network connection or contact Advocate Anil Kumar Gupta directly at +91 79837 67392 or anilgupta19755@gmail.com.",
       });
     } finally {
       setIsPending(false);
@@ -266,9 +214,14 @@ export function ContactForm() {
       {state.message && !state.success && (
         <div className="p-4 rounded-xl bg-red-50/90 backdrop-blur-md border border-red-200 text-red-800 text-sm flex items-start gap-3 shadow-xs">
           <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-          <div>
-            <div className="font-semibold">Unable to submit form</div>
-            <p className="text-xs text-red-700 mt-0.5">{state.message}</p>
+          <div className="space-y-1">
+            <div className="font-semibold">Unable to Complete Submission</div>
+            <p className="text-xs text-red-700 leading-relaxed">{state.message}</p>
+            {state.referenceId && (
+              <div className="text-xs text-charcoal-700 font-mono mt-1 pt-1 border-t border-red-200/80">
+                Tracking Reference ID: <strong>{state.referenceId}</strong>
+              </div>
+            )}
           </div>
         </div>
       )}
