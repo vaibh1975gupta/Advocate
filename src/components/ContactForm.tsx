@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useActionState } from "react";
+import React, { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, ShieldAlert, Loader2, RefreshCw, Mail } from "lucide-react";
-import { submitEnquiryAction, ContactFormState } from "@/app/actions/contact";
+import { ContactFormState } from "@/lib/contactService";
 import { practiceAreas } from "@/data/practiceAreas";
 import { ConfettiCelebration } from "@/components/animations/ConfettiCelebration";
 import { siteConfig } from "@/config/siteConfig";
@@ -13,7 +13,36 @@ const initialState: ContactFormState = {
 };
 
 export function ContactForm() {
-  const [state, formAction, isPending] = useActionState(submitEnquiryAction, initialState);
+  const [state, setState] = useState<ContactFormState>(initialState);
+  const [isPending, setIsPending] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsPending(true);
+    setState({ success: false, message: "" });
+
+    try {
+      const formEl = e.currentTarget;
+      const formData = new FormData(formEl);
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data: ContactFormState = await res.json();
+      setState(data);
+    } catch (err) {
+      console.error("[FORM_SUBMISSION_ERROR]", err);
+      setState({
+        success: false,
+        message:
+          "Failed to submit request due to a network connection issue. Please try again or write directly to anilgupta19755@gmail.com.",
+      });
+    } finally {
+      setIsPending(false);
+    }
+  }
 
   if (state.success) {
     return (
@@ -73,7 +102,7 @@ export function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {/* Direct Email Consultation Option */}
       <div className="p-3.5 sm:p-4 rounded-2xl bg-white/80 backdrop-blur-md border border-gold-500/40 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">
