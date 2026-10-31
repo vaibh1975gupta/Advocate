@@ -83,29 +83,120 @@ export function ContactForm() {
         return;
       }
 
-      // Submit only to the server-side API route /api/contact
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        body: formData,
+      // 2. Validate on server & log enquiry to generate official Reference ID
+      let serverReferenceId = `ADV-${new Date().getFullYear()}-${Math.floor(
+        100000 + Math.random() * 900000
+      )}`;
+      let practiceAreaLabel = practiceArea;
+      let submissionTimestamp = new Date().toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        dateStyle: "full",
+        timeStyle: "short",
       });
 
-      const data: ContactFormState = await res.json().catch(() => null);
+      try {
+        const logRes = await fetch("/api/contact", {
+          method: "POST",
+          body: formData,
+        });
+        const serverData: ContactFormState = await logRes.json().catch(() => null);
+        if (serverData) {
+          if (!serverData.success && serverData.errors) {
+            setState(serverData);
+            setIsPending(false);
+            return;
+          }
+          if (serverData.referenceId) {
+            serverReferenceId = serverData.referenceId;
+          }
+          if (serverData.practiceAreaLabel) {
+            practiceAreaLabel = serverData.practiceAreaLabel;
+          }
+          if (serverData.submissionTimestamp) {
+            submissionTimestamp = serverData.submissionTimestamp;
+          }
+        }
+      } catch (logErr) {
+        console.warn("[SERVER_LOGGING_WARNING] Proceeding with client direct dispatch:", logErr);
+      }
 
-      if (!data) {
+      // 3. Option A: Direct browser dispatch to FormSubmit (runs on client ISP IP, bypassing Cloudflare datacenter blocks)
+      const preferredTime =
+        formData.get("preferredTime")?.toString().trim() || "Anytime";
+
+      const emailPayload = {
+        _subject: `New Legal Enquiry [Ref: ${serverReferenceId}] - ${fullName}`,
+        _replyto: email,
+        _template: "table",
+        "Reference ID": serverReferenceId,
+        "Client Name": fullName,
+        "Contact Number": phone,
+        "Client Email": email,
+        "Practice Area": practiceAreaLabel,
+        "Preferred Time to Call": preferredTime,
+        "Legal Query Outline": message,
+        "Submission Time (IST)": submissionTimestamp,
+      };
+
+      const fsRes = await fetch(
+        "https://formsubmit.co/ajax/anilgupta19755@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(emailPayload),
+        }
+      );
+
+      const responseText = await fsRes.text();
+      let providerData: { success?: string | boolean; message?: string } | null = null;
+      try {
+        providerData = JSON.parse(responseText);
+      } catch {
+        providerData = null;
+      }
+
+      // Check if FormSubmit requires initial activation confirmation
+      const providerMsg = providerData?.message || "";
+      if (/activate/i.test(providerMsg)) {
         setState({
           success: false,
-          message:
-            "A server communication error occurred. Please contact Advocate Anil Kumar Gupta directly at +91 79837 67392 or anilgupta19755@gmail.com.",
+          referenceId: serverReferenceId,
+          message: `Your inquiry Reference ID is ${serverReferenceId}. The chamber email forwarding service requires a one-time activation. Please contact Advocate Anil Kumar Gupta directly at +91 79837 67392 or anilgupta19755@gmail.com.`,
         });
-      } else {
-        setState(data);
+        setIsPending(false);
+        return;
       }
+
+      // Verify provider confirmation
+      const isProviderSuccess =
+        fsRes.ok && String(providerData?.success).toLowerCase() === "true";
+
+      if (!isProviderSuccess) {
+        setState({
+          success: false,
+          referenceId: serverReferenceId,
+          message: `We were unable to confirm delivery of your inquiry to the chamber inbox at this moment (Ref: ${serverReferenceId}). Please reach out directly by telephone at +91 79837 67392 or email anilgupta19755@gmail.com.`,
+        });
+        setIsPending(false);
+        return;
+      }
+
+      // Success confirmed by FormSubmit
+      setState({
+        success: true,
+        referenceId: serverReferenceId,
+        message:
+          "Your consultation request has been confirmed and delivered to Advocate Anil Kumar Gupta's chamber inbox (anilgupta19755@gmail.com). Our office will review the matter and contact you at your preferred time.",
+      });
     } catch (err) {
       console.error("[CONTACT_SUBMISSION_ERROR]", err);
       setState({
         success: false,
         message:
-          "Unable to connect to the chamber server. Please check your network connection or contact Advocate Anil Kumar Gupta directly at +91 79837 67392 or anilgupta19755@gmail.com.",
+          "A network connection issue prevented email delivery. Please check your internet connection or contact Advocate Anil Kumar Gupta directly at +91 79837 67392 or anilgupta19755@gmail.com.",
       });
     } finally {
       setIsPending(false);

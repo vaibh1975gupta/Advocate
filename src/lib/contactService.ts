@@ -13,9 +13,8 @@ export interface ContactFormState {
   success: boolean;
   message: string;
   referenceId?: string;
-  providerStatus?: number;
-  providerMessage?: string;
-  providerError?: string;
+  practiceAreaLabel?: string;
+  submissionTimestamp?: string;
   errors?: {
     fullName?: string[];
     phone?: string[];
@@ -79,7 +78,7 @@ export async function validateAndSubmitEnquiry(
 
   const errors: Record<string, string[]> = {};
 
-  // Validation
+  // Full Name validation
   const trimmedName = fullName?.trim() || "";
   if (!trimmedName || trimmedName.length < 3) {
     errors.fullName = ["Please enter your full name (at least 3 characters)."];
@@ -161,7 +160,7 @@ export async function validateAndSubmitEnquiry(
 
   // Log confirmed submission on server with PII redacted for legal confidentiality
   console.log(
-    `[ENQUIRY_RECEIVED] Reference: ${referenceId} | Area: ${practiceAreaLabel} | Preferred: ${preferredTime}`
+    `[ENQUIRY_LOGGED] Reference: ${referenceId} | Area: ${practiceAreaLabel} | Preferred: ${preferredTime}`
   );
   console.log(
     `[CLIENT_META_MASKED] Name: ${maskName(trimmedName)} | Phone: ${maskPhone(
@@ -172,99 +171,11 @@ export async function validateAndSubmitEnquiry(
     `[QUERY_RECORDED] Outline length: ${trimmedMessage.length} characters (content omitted for privacy)`
   );
 
-  // Server-side dispatch to FormSubmit
-  try {
-    const emailPayload = {
-      _subject: `New Legal Enquiry [Ref: ${referenceId}] - ${trimmedName}`,
-      _replyto: email,
-      _template: "table",
-      "Reference ID": referenceId,
-      "Client Name": trimmedName,
-      "Contact Number": phone,
-      "Client Email": email,
-      "Practice Area": practiceAreaLabel,
-      "Preferred Time to Call": preferredTime,
-      "Legal Query Outline": trimmedMessage,
-      "Submission Time (IST)": submissionTimestamp,
-    };
-
-    const res = await fetch(
-      "https://formsubmit.co/ajax/anilgupta19755@gmail.com",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Referer: "https://www.advocateanilkumargupta.in/contact",
-          Origin: "https://www.advocateanilkumargupta.in",
-          "User-Agent":
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        },
-        body: JSON.stringify(emailPayload),
-      }
-    );
-
-    const responseText = await res.text();
-    let providerData: { success?: string | boolean; message?: string } | null = null;
-    try {
-      providerData = JSON.parse(responseText);
-    } catch {
-      providerData = null;
-    }
-
-    console.log(`[FORMSUBMIT_RESPONSE]`, {
-      status: res.status,
-      statusText: res.statusText,
-      providerSuccess: providerData?.success ?? "non-json",
-      providerMessage: providerData?.message ?? responseText.slice(0, 100),
-    });
-
-    // Check if provider requires initial email activation
-    const providerMessage = providerData?.message || "";
-    const needsActivation = /activate/i.test(providerMessage);
-    if (needsActivation) {
-      console.warn(
-        `[FORMSUBMIT_ACTIVATION_REQUIRED] FormSubmit requires initial activation for anilgupta19755@gmail.com.`
-      );
-      return {
-        success: false,
-        referenceId,
-        message: `Your inquiry Reference ID is ${referenceId}. Our automated email routing is currently awaiting one-time chamber activation. Please contact Advocate Anil Kumar Gupta directly at +91 79837 67392 or anilgupta19755@gmail.com.`,
-      };
-    }
-
-    // Verify both HTTP OK and provider application-level confirmation
-    const isProviderSuccess =
-      res.ok && String(providerData?.success).toLowerCase() === "true";
-
-    if (!isProviderSuccess) {
-      return {
-        success: false,
-        referenceId,
-        providerStatus: res.status,
-        providerMessage: providerData?.message || responseText.slice(0, 100),
-        message: `We were unable to confirm delivery of your inquiry to the chamber inbox at this moment (Ref: ${referenceId}). Please reach out directly by telephone at +91 79837 67392 or email anilgupta19755@gmail.com.`,
-      };
-    }
-
-    // Provider confirmed successful acceptance
-    return {
-      success: true,
-      referenceId,
-      message:
-        "Your consultation request has been recorded and confirmed by our email service. Advocate Anil Kumar Gupta's chambers will review your matter and contact you at your preferred time.",
-    };
-  } catch (err) {
-    console.error(`[FORMSUBMIT_FETCH_ERROR]`, {
-      error: err instanceof Error ? err.message : "Unknown network error",
-      referenceId,
-    });
-
-    return {
-      success: false,
-      referenceId,
-      providerError: err instanceof Error ? err.message : "Unknown network error",
-      message: `A network connection error prevented email delivery (Ref: ${referenceId}). Please call our chambers directly at +91 79837 67392 or email anilgupta19755@gmail.com.`,
-    };
-  }
+  return {
+    success: true,
+    referenceId,
+    practiceAreaLabel,
+    submissionTimestamp,
+    message: "Enquiry validated and recorded on chamber server.",
+  };
 }

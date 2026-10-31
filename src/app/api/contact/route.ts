@@ -39,13 +39,9 @@ export async function POST(request: NextRequest) {
 
     const result = await validateAndSubmitEnquiry(input);
 
-    const httpStatus = result.success
-      ? 200
-      : result.errors
-      ? 422
-      : 502;
-
-    return NextResponse.json(result, { status: httpStatus });
+    return NextResponse.json(result, {
+      status: result.success ? 200 : 422,
+    });
   } catch (error) {
     console.error(
       "[API_CONTACT_CRITICAL_ERROR]",
