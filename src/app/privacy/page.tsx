@@ -5,9 +5,36 @@ import { ShieldCheck, ArrowLeft } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy & Confidentiality | Advocate Chambers",
+  title: {
+    absolute: "Privacy Policy & Client Confidentiality | Advocate Anil Kumar Gupta",
+  },
   description:
-    "Privacy and client confidentiality policies under Section 126 of the Indian Evidence Act.",
+    "Client privacy, privilege, and professional confidentiality policy under Section 126 of the Indian Evidence Act for Advocate Anil Kumar Gupta's legal chambers.",
+  alternates: {
+    canonical: "https://advocateanilkumargupta.in/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy & Client Confidentiality | Advocate Anil Kumar Gupta",
+    description:
+      "Client privacy, privilege, and professional confidentiality policy under Section 126 of the Indian Evidence Act for Advocate Anil Kumar Gupta's legal chambers.",
+    url: "https://advocateanilkumargupta.in/privacy",
+    type: "website",
+    images: [
+      {
+        url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Privacy Policy - Advocate Anil Kumar Gupta",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy & Client Confidentiality | Advocate Anil Kumar Gupta",
+    description:
+      "Client privacy, privilege, and professional confidentiality policy under Section 126 of the Indian Evidence Act for Advocate Anil Kumar Gupta's legal chambers.",
+    images: ["https://advocateanilkumargupta.in/images/advocate-portrait.jpg"],
+  },
 };
 
 export default function PrivacyPage() {

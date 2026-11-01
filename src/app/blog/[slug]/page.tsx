@@ -33,17 +33,40 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = articles.find((a) => a.slug === slug);
   if (!article) return { title: "Article Not Found" };
 
+  const canonicalUrl = `https://advocateanilkumargupta.in/blog/${article.slug}`;
+
   return {
-    title: `${article.title} | Legal Guide`,
+    title: {
+      absolute: `${article.title} | Advocate Anil Kumar Gupta`,
+    },
     description: article.excerpt,
     keywords: [...siteConfig.seo.keywords, ...article.tags],
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: article.title,
       description: article.excerpt,
+      url: canonicalUrl,
       type: "article",
       publishedTime: article.publishedDate,
       authors: [article.author],
       tags: article.tags,
+      locale: article.language === "hi" ? "hi_IN" : "en_IN",
+      images: [
+        {
+          url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${article.title} - Advocate Anil Kumar Gupta`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt,
+      images: ["https://advocateanilkumargupta.in/images/advocate-portrait.jpg"],
     },
   };
 }
@@ -60,8 +83,71 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     .filter((a) => a.slug !== slug && (a.category === article.category || a.language === article.language))
     .slice(0, 3);
 
+  const articleCanonicalUrl = `https://advocateanilkumargupta.in/blog/${article.slug}`;
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://advocateanilkumargupta.in/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Legal Articles",
+        item: "https://advocateanilkumargupta.in/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: articleCanonicalUrl,
+      },
+    ],
+  };
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.excerpt,
+    inLanguage: article.language,
+    datePublished: article.publishedDate,
+    dateModified: article.publishedDate,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleCanonicalUrl,
+    },
+    author: {
+      "@type": "Person",
+      name: article.author,
+      jobTitle: "Advocate & Legal Consultant",
+      url: "https://advocateanilkumargupta.in/about",
+    },
+    publisher: {
+      "@type": ["LegalService", "Attorney"],
+      name: siteConfig.advocate.fullName,
+      url: "https://advocateanilkumargupta.in",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+      },
+    },
+    keywords: article.tags.join(", "),
+  };
+
   return (
     <div className="space-y-12 sm:space-y-16 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([breadcrumbSchema, articleSchema]),
+        }}
+      />
       {/* Header Banner */}
       <section className="bg-navy-950 text-ivory-100 py-16 sm:py-20 border-b border-gold-500/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

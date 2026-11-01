@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -22,6 +23,41 @@ import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { ParallaxElement } from "@/components/animations/ParallaxElement";
 import { ParallaxFloatingWatermark } from "@/components/animations/ParallaxFloatingWatermark";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Advocate Anil Kumar Gupta | Advocate in Bareilly",
+  },
+  description:
+    "Official website of Advocate Anil Kumar Gupta, Bareilly, Uttar Pradesh. Explore professional information, legal practice areas, consultation contact details and legal resources.",
+  alternates: {
+    canonical: "https://advocateanilkumargupta.in/",
+  },
+  openGraph: {
+    title: "Advocate Anil Kumar Gupta | Advocate in Bareilly",
+    description:
+      "Official website of Advocate Anil Kumar Gupta, Bareilly, Uttar Pradesh. Explore professional information, legal practice areas, consultation contact details and legal resources.",
+    url: "https://advocateanilkumargupta.in/",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Advocate Anil Kumar Gupta",
+    images: [
+      {
+        url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Advocate Anil Kumar Gupta - Advocate in Bareilly, Uttar Pradesh",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Advocate Anil Kumar Gupta | Advocate in Bareilly",
+    description:
+      "Official website of Advocate Anil Kumar Gupta, Bareilly, Uttar Pradesh. Explore professional information, legal practice areas, consultation contact details and legal resources.",
+    images: ["https://advocateanilkumargupta.in/images/advocate-portrait.jpg"],
+  },
+};
 
 export default function HomePage() {
   const featuredArticles = articles.slice(0, 4);

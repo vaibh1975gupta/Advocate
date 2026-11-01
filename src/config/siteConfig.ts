@@ -71,19 +71,19 @@ export const siteConfig = {
     officeAddress: {
       title: "Chambers & Main Office",
       line1: "Near SSP Office",
-      line2: "District & Sessions Court Area",
-      city: "Chamber Complex",
-      state: "India",
-      pincode: "",
+      line2: "District & Sessions Court Area, Bareilly",
+      city: "Bareilly",
+      state: "Uttar Pradesh",
+      pincode: "243001",
       country: "India",
     },
     chambersAddress: {
       title: "Court Chambers",
       line1: "Near SSP Office",
-      line2: "District & Sessions Court Complex",
-      city: "Chamber Complex",
-      state: "India",
-      pincode: "",
+      line2: "District & Sessions Court Complex, Bareilly",
+      city: "Bareilly",
+      state: "Uttar Pradesh",
+      pincode: "243001",
       country: "India",
     },
 
@@ -118,19 +118,22 @@ export const siteConfig = {
 
   // SEO & Metadata Configuration
   seo: {
-    siteName: "Advocate Anil Kumar Gupta | District & Sessions Court",
+    siteName: "Advocate Anil Kumar Gupta",
     siteUrl: "https://advocateanilkumargupta.in",
-    defaultTitle: "Advocate Anil Kumar Gupta | District & Sessions Court (25+ Years Experience)",
+    defaultTitle: "Advocate Anil Kumar Gupta | Advocate in Bareilly",
     defaultDescription:
-      "Official professional website of Advocate Anil Kumar Gupta with over 25 years of legal experience in the District & Sessions Court. Practice areas: Criminal Law, Family Matters, NI Act Cheque Dishonour, and Legal Documentation.",
+      "Official website of Advocate Anil Kumar Gupta, Bareilly, Uttar Pradesh. Explore professional information, legal practice areas, consultation contact details and legal resources.",
     keywords: [
       "Advocate Anil Kumar Gupta",
-      "District and Sessions Court Advocate",
-      "Criminal Lawyer near SSP Office",
+      "Advocate in Bareilly",
+      "Lawyer in Bareilly",
+      "District and Sessions Court Bareilly",
+      "Criminal Lawyer Bareilly",
+      "Court Marriage Lawyer Bareilly",
+      "Affidavits and Legal Documentation",
       "Section 138 NI Act Cheque Bounce Lawyer",
-      "Family Court Advocate",
-      "Legal Documentation Advocate",
-      "25 Years Experience Advocate",
+      "Family Court Advocate Bareilly",
+      "Bareilly Advocate Contact",
     ],
   },
 };

@@ -27,14 +27,76 @@ export async function generateStaticParams() {
   }));
 }
 
+const practiceAreaSeoMap: Record<
+  string,
+  { title: string; description: string }
+> = {
+  "criminal-matters": {
+    title:
+      "Criminal Matters & Defense Legal Procedure | Advocate Anil Kumar Gupta Bareilly",
+    description:
+      "Legal representation in criminal defense, regular bail, anticipatory bail, and trials before Bareilly District & Sessions Court and magisterial forums.",
+  },
+  "family-law-matters": {
+    title:
+      "Court Marriage & Family Law Proceedings | Advocate Anil Kumar Gupta Bareilly",
+    description:
+      "Legal counsel for court marriage under Special Marriage Act, mutual consent divorce, maintenance, and matrimonial dispute resolution in Bareilly.",
+  },
+  "cheque-dishonour-matters": {
+    title:
+      "Section 138 NI Act Cheque Bounce Defense & Notices | Advocate Anil Kumar Gupta Bareilly",
+    description:
+      "Statutory legal notices, complaint filing, defense strategy, and trial representation under Section 138 Negotiable Instruments Act in Bareilly courts.",
+  },
+  "documentation-legal-advice": {
+    title:
+      "Affidavits, Legal Documentation & Drafting | Advocate Anil Kumar Gupta Bareilly",
+    description:
+      "Drafting and legal vetting of affidavits, agreements, sale deeds, family settlements, and formal legal opinions in Bareilly, Uttar Pradesh.",
+  },
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const area = practiceAreas.find((a) => a.slug === slug);
   if (!area) return { title: "Practice Area Not Found" };
 
-  return {
-    title: `${area.title} | Advocate Legal Counsel`,
+  const seoData = practiceAreaSeoMap[slug] || {
+    title: `${area.title} | Advocate Anil Kumar Gupta Bareilly`,
     description: area.shortDescription,
+  };
+
+  const canonicalUrl = `https://advocateanilkumargupta.in/practice-areas/${area.slug}`;
+
+  return {
+    title: {
+      absolute: seoData.title,
+    },
+    description: seoData.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: seoData.title,
+      description: seoData.description,
+      url: canonicalUrl,
+      type: "website",
+      images: [
+        {
+          url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${area.title} - Advocate Anil Kumar Gupta Bareilly`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData.title,
+      description: seoData.description,
+      images: ["https://advocateanilkumargupta.in/images/advocate-portrait.jpg"],
+    },
   };
 }
 
@@ -48,8 +110,64 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
 
   const otherAreas = practiceAreas.filter((a) => a.slug !== slug);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://advocateanilkumargupta.in/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Practice Areas",
+        item: "https://advocateanilkumargupta.in/practice-areas",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: area.title,
+        item: `https://advocateanilkumargupta.in/practice-areas/${area.slug}`,
+      },
+    ],
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${area.title} - Legal Counsel`,
+    description: area.procedureOverview,
+    provider: {
+      "@type": ["LegalService", "Attorney"],
+      name: siteConfig.advocate.fullName,
+      url: "https://advocateanilkumargupta.in",
+      telephone: siteConfig.contact.mainPhone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: `${siteConfig.contact.officeAddress.line1}, ${siteConfig.contact.officeAddress.line2}`,
+        addressLocality: "Bareilly",
+        addressRegion: "Uttar Pradesh",
+        postalCode: "243001",
+        addressCountry: "IN",
+      },
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Bareilly, Uttar Pradesh, India",
+    },
+  };
+
   return (
     <div className="space-y-16 sm:space-y-24 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([breadcrumbSchema, serviceSchema]),
+        }}
+      />
       {/* Header Banner */}
       <section className="bg-navy-950 text-ivory-100 py-16 sm:py-20 border-b border-gold-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

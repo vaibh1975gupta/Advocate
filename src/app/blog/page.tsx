@@ -7,14 +7,64 @@ import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { ParallaxFloatingWatermark } from "@/components/animations/ParallaxFloatingWatermark";
 
 export const metadata: Metadata = {
-  title: "Legal Information & Articles | Procedures & Rights",
+  title: {
+    absolute: "Legal Articles & Procedural Guides | Advocate Anil Kumar Gupta",
+  },
   description:
-    "Educational legal articles and practical procedural guides on Section 138 NI Act, criminal bail, property verification, and matrimonial law in English and हिन्दी.",
+    "Educational articles on Indian legal procedures, Section 138 NI Act, criminal bail, court marriage, property verification, and citizen rights in English and हिन्दी.",
+  alternates: {
+    canonical: "https://advocateanilkumargupta.in/blog",
+  },
+  openGraph: {
+    title: "Legal Articles & Procedural Guides | Advocate Anil Kumar Gupta",
+    description:
+      "Educational articles on Indian legal procedures, Section 138 NI Act, criminal bail, court marriage, property verification, and citizen rights in English and हिन्दी.",
+    url: "https://advocateanilkumargupta.in/blog",
+    type: "website",
+    images: [
+      {
+        url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Legal Articles & Procedural Guides - Advocate Anil Kumar Gupta",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Legal Articles & Procedural Guides | Advocate Anil Kumar Gupta",
+    description:
+      "Educational articles on Indian legal procedures, Section 138 NI Act, criminal bail, court marriage, property verification, and citizen rights in English and हिन्दी.",
+    images: ["https://advocateanilkumargupta.in/images/advocate-portrait.jpg"],
+  },
 };
 
 export default function BlogPage() {
+  const blogBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://advocateanilkumargupta.in/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Legal Articles",
+        item: "https://advocateanilkumargupta.in/blog",
+      },
+    ],
+  };
+
   return (
     <div className="space-y-16 sm:space-y-24 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogBreadcrumb) }}
+      />
       {/* Page Header */}
       <section className="bg-navy-950 text-ivory-100 py-16 sm:py-20 border-b border-gold-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

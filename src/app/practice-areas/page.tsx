@@ -9,9 +9,39 @@ import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { ParallaxFloatingWatermark } from "@/components/animations/ParallaxFloatingWatermark";
 
 export const metadata: Metadata = {
-  title: "Areas of Legal Practice | Dedicated Legal Counsel",
+  title: {
+    absolute:
+      "Legal Practice Areas | Criminal Matters, Court Marriage & Affidavits | Advocate Anil Kumar Gupta",
+  },
   description:
-    "Specialized legal practice areas: Criminal Law, Land & Property Disputes, Family Law Matters, Cheque Dishonour (Section 138 NI Act), and Legal Documentation.",
+    "Overview of legal practice areas handled by Advocate Anil Kumar Gupta in Bareilly, Uttar Pradesh, including Criminal Matters, Court Marriage, Affidavits, and Section 138 NI Act.",
+  alternates: {
+    canonical: "https://advocateanilkumargupta.in/practice-areas",
+  },
+  openGraph: {
+    title:
+      "Legal Practice Areas | Criminal Matters, Court Marriage & Affidavits | Advocate Anil Kumar Gupta",
+    description:
+      "Overview of legal practice areas handled by Advocate Anil Kumar Gupta in Bareilly, Uttar Pradesh, including Criminal Matters, Court Marriage, Affidavits, and Section 138 NI Act.",
+    url: "https://advocateanilkumargupta.in/practice-areas",
+    type: "website",
+    images: [
+      {
+        url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Legal Practice Areas - Advocate Anil Kumar Gupta Bareilly",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Legal Practice Areas | Criminal Matters, Court Marriage & Affidavits | Advocate Anil Kumar Gupta",
+    description:
+      "Overview of legal practice areas handled by Advocate Anil Kumar Gupta in Bareilly, Uttar Pradesh, including Criminal Matters, Court Marriage, Affidavits, and Section 138 NI Act.",
+    images: ["https://advocateanilkumargupta.in/images/advocate-portrait.jpg"],
+  },
 };
 
 export default function PracticeAreasPage() {

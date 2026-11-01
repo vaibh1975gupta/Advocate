@@ -21,9 +21,36 @@ import { ParallaxFloatingWatermark } from "@/components/animations/ParallaxFloat
 import { ScrollTimeline } from "@/components/animations/ScrollTimeline";
 
 export const metadata: Metadata = {
-  title: `About ${siteConfig.advocate.fullName} | 25+ Years Legal Practice`,
+  title: {
+    absolute: "About Advocate Anil Kumar Gupta | 25+ Years Legal Practice in Bareilly",
+  },
   description:
-    "Professional biography, educational background, court jurisdictions, and ethical approach of Advocate Anil Kumar Gupta with over 25 years of practice in District & Sessions Court.",
+    "Professional background, qualifications, court jurisdictions, and ethical legal practice of Advocate Anil Kumar Gupta with over 25 years of experience in Bareilly courts.",
+  alternates: {
+    canonical: "https://advocateanilkumargupta.in/about",
+  },
+  openGraph: {
+    title: "About Advocate Anil Kumar Gupta | 25+ Years Legal Practice in Bareilly",
+    description:
+      "Professional background, qualifications, court jurisdictions, and ethical legal practice of Advocate Anil Kumar Gupta with over 25 years of experience in Bareilly courts.",
+    url: "https://advocateanilkumargupta.in/about",
+    type: "profile",
+    images: [
+      {
+        url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Advocate Anil Kumar Gupta - Legal Consultant in Bareilly",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Advocate Anil Kumar Gupta | 25+ Years Legal Practice in Bareilly",
+    description:
+      "Professional background, qualifications, court jurisdictions, and ethical legal practice of Advocate Anil Kumar Gupta with over 25 years of experience in Bareilly courts.",
+    images: ["https://advocateanilkumargupta.in/images/advocate-portrait.jpg"],
+  },
 };
 
 export default function AboutPage() {

@@ -5,11 +5,11 @@ import { articles } from "@/data/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.seo.siteUrl;
-  const staticDate = new Date("2025-03-20T00:00:00.000Z");
+  const staticDate = new Date("2026-11-01T00:00:00.000Z");
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}`,
+      url: `${baseUrl}/`,
       lastModified: staticDate,
       changeFrequency: "weekly",
       priority: 1.0,

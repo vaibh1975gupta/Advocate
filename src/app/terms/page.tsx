@@ -5,8 +5,36 @@ import { ArrowLeft } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | Advocate Website",
-  description: "Terms and conditions governing the informational use of this legal website.",
+  title: {
+    absolute: "Terms of Website Use | Advocate Anil Kumar Gupta",
+  },
+  description:
+    "Terms and conditions governing the informational and educational use of the website of Advocate Anil Kumar Gupta, Bareilly.",
+  alternates: {
+    canonical: "https://advocateanilkumargupta.in/terms",
+  },
+  openGraph: {
+    title: "Terms of Website Use | Advocate Anil Kumar Gupta",
+    description:
+      "Terms and conditions governing the informational and educational use of the website of Advocate Anil Kumar Gupta, Bareilly.",
+    url: "https://advocateanilkumargupta.in/terms",
+    type: "website",
+    images: [
+      {
+        url: "https://advocateanilkumargupta.in/images/advocate-portrait.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Terms of Use - Advocate Anil Kumar Gupta",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Website Use | Advocate Anil Kumar Gupta",
+    description:
+      "Terms and conditions governing the informational and educational use of the website of Advocate Anil Kumar Gupta, Bareilly.",
+    images: ["https://advocateanilkumargupta.in/images/advocate-portrait.jpg"],
+  },
 };
 
 export default function TermsPage() {
