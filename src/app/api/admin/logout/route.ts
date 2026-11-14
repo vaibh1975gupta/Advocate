@@ -1,31 +1,21 @@
 
+import { NextResponse } from "next/server";
 import { deleteAdminSession } from "@/lib/adminAuth";
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
     await deleteAdminSession();
 
-    return Response.json(
-      {
-        success: true,
-        message: "Logged out successfully.",
-      },
-      {
-        status: 200,
-        headers: {
-          "Cache-Control": "no-store",
-        },
-      }
+    return NextResponse.redirect(
+      new URL("/admin/login?loggedOut=1", request.url),
+      { status: 303 }
     );
   } catch (error) {
     console.error("Admin logout error:", error);
 
-    return Response.json(
-      {
-        success: false,
-        message: "Unable to log out.",
-      },
-      { status: 500 }
+    return NextResponse.redirect(
+      new URL("/admin/login?logoutError=1", request.url),
+      { status: 303 }
     );
   }
 }

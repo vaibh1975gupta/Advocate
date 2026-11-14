@@ -25,18 +25,18 @@ import { ParallaxElement } from "@/components/animations/ParallaxElement";
 import { ParallaxFloatingWatermark } from "@/components/animations/ParallaxFloatingWatermark";
 
 export const metadata: Metadata = {
-  title: {
-    absolute: "Advocate Anil Kumar Gupta | Advocate in Bareilly",
-  },
-  description:
-    "Official website of Advocate Anil Kumar Gupta, Bareilly, Uttar Pradesh. Explore professional information, legal practice areas, consultation contact details and legal resources.",
+ title: {
+  absolute: "Advocate in Bareilly | Anil Kumar Gupta – Legal Services",
+},
+description:
+  "Looking for an advocate in Bareilly? Advocate Anil Kumar Gupta offers legal services in criminal matters, family law, court marriage, cheque dishonour and affidavits. Contact the office for consultation.",
   alternates: {
     canonical: "https://advocateanilkumargupta.in/",
   },
   openGraph: {
-    title: "Advocate Anil Kumar Gupta | Advocate in Bareilly",
-    description:
-      "Official website of Advocate Anil Kumar Gupta, Bareilly, Uttar Pradesh. Explore professional information, legal practice areas, consultation contact details and legal resources.",
+  title: "Advocate in Bareilly | Anil Kumar Gupta – Legal Services",
+  description:
+    "Looking for an advocate in Bareilly? Advocate Anil Kumar Gupta offers legal services in criminal matters, family law, court marriage, cheque dishonour and affidavits. Contact the office for consultation.",
     url: "https://advocateanilkumargupta.in/",
     type: "website",
     locale: "en_IN",
@@ -359,7 +359,7 @@ export default function HomePage() {
                           <div className="flex items-center justify-between">
                             <span className="text-charcoal-400">Office Location:</span>
                             <span className="text-ivory-100 font-medium text-right">
-                              Near SSP Office
+                              Near SSP Office Bareilly
                             </span>
                           </div>
                           <div className="flex items-center justify-between">

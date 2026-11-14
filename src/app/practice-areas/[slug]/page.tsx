@@ -14,7 +14,7 @@ import {
 import { practiceAreas } from "@/data/practiceAreas";
 import { siteConfig } from "@/config/siteConfig";
 import { PracticeIcon } from "@/components/PracticeIcon";
-
+export const instant = false;
 interface PageProps {
   params: Promise<{
     slug: string;
@@ -32,11 +32,11 @@ const practiceAreaSeoMap: Record<
   { title: string; description: string }
 > = {
   "criminal-matters": {
-    title:
-      "Criminal Matters & Defense Legal Procedure | Advocate Anil Kumar Gupta Bareilly",
-    description:
-      "Legal representation in criminal defense, regular bail, anticipatory bail, and trials before Bareilly District & Sessions Court and magisterial forums.",
-  },
+  title:
+    "Criminal Lawyer in Bareilly | Advocate Anil Kumar Gupta",
+  description:
+    "Advocate Anil Kumar Gupta provides legal representation in criminal matters in Bareilly, including regular bail, anticipatory bail, criminal trials, appeals and related proceedings.",
+},
   "family-law-matters": {
     title:
       "Court Marriage & Family Law Proceedings | Advocate Anil Kumar Gupta Bareilly",
@@ -190,8 +190,12 @@ export default async function PracticeAreaDetailPage({ params }: PageProps) {
             </div>
 
             <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ivory-50">
-              {area.title}
-            </h1>
+             {slug === "criminal-matters"
+             ? "Criminal Lawyer in Bareilly – Criminal Matters"
+              : slug === "family-law-matters"
+              ? "Family Lawyer in Bareilly – Family Law Matters"
+               : area.title}
+             </h1>
             <p className="text-base sm:text-lg text-charcoal-200 font-sans leading-relaxed">
               {area.shortDescription}
             </p>
